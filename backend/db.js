@@ -1,18 +1,15 @@
-const mysql = require('mysql2/promise');  // Import mysql2 with promises
+const mysql = require('mysql2/promise');
 const dotenv = require('dotenv');
 dotenv.config();
 
-// Create a connection pool
-const connection = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    waitForConnections: true,  // Ensures that queries wait for a connection to be available
-    connectionLimit: 10,  // Set the maximum number of connections in the pool
-    queueLimit: 0,  // Unlimited queue length
+// Create a connection pool to Google Cloud SQL MySQL instance
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,          // Public IP or Cloud SQL instance IP
+  user: process.env.DB_USER,          // MySQL username
+  password: process.env.DB_PASSWORD,  // MySQL password
+  database: process.env.DB_NAME,      // Your database name
+  port: process.env.DB_PORT || 3306,  // Default MySQL port
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined  // Enable SSL if needed
 });
 
-// No need to call .connect() as the pool is already set up
-
-module.exports = connection;  // Export the connection pool
+module.exports = pool;

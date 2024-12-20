@@ -8,10 +8,10 @@ const createToken = (id)=>{
 }
 const userRegister = async (req,res) => {
     try{
-             let {name,email,password,skills = null,interests = null ,role} = req.body;
+             let {name,email,bio,password,skills = null,interests = null ,role} = req.body;
              let image = req.file;   
-             console.log(name);  
-             if(!name || !email || !password || !role){
+             console.log(name,email,bio,password,role,interests,skills);  
+             if(!name || !email || !password || !role || !bio){
                 throw new Error("Invalid Credentials");
              }
              if(!validator.isEmail(email)){
@@ -20,7 +20,8 @@ const userRegister = async (req,res) => {
                if(password.length < 8){
                 return res.json({success:false,msg:"Please enter a strong password"});
                }
-               const [results] = await connection.query('SELECT * FROM user WHERE email = ?',[email]);
+               await connection.query('USE user');
+               const [results] = await connection.query('SELECT * FROM User WHERE email = ?',[email]);
                if(results.length > 0){
                 return res.json({success:false,msg:"User already exists"});
                }  
@@ -31,7 +32,7 @@ const userRegister = async (req,res) => {
                }      
                const salt = await bcrypt.genSalt(10);
                const hashedPassword = await bcrypt.hash(password,salt);
-                 await connection.execute('INSERT INTO user (name,email,password,image,skills,interests,role) VALUES (?,?,?,?,?,?,?)',[name,email,hashedPassword,imageUrl,skills,interests,role]);
+                 await connection.execute('INSERT INTO User (name,email,password,image,skills,interests,role,bio) VALUES (?,?,?,?,?,?,?,?)',[name,email,hashedPassword,imageUrl,skills,interests,role,bio]);
                  const [[user]] = await connection.query('SELECT * FROM User WHERE email = ?',email);
                 console.log(user);
         console.log(user.id);
@@ -45,9 +46,11 @@ const userLogin = async (req,res) => {
     try{
         console.log("djirjrif");
                const {email,password} = req.body;
+               console.log(req.body);
                if(!email || !password){
                 throw new Error("Invalid Credentials");
                }
+               console.log("hiifjijgri")
                const [[user]] = await connection.query('SELECT * FROM User WHERE email = ?',[email]);
                console.log(user);
                if(user == null){
@@ -74,6 +77,16 @@ try{
 }
 const getUser = async (req,res) =>{
     try{
+          const {userId} = req.params;
+          const [result] = await connection.query('SELECT * FROM User WHERE id = ?',[userId]);
+          console.log(result);
+    res.send({success:true,result});
+    }catch(e){
+        res.json({success:false,msg:e.message});
+    }
+}
+const getAuthUser = async (req,res) =>{
+    try{
           const {userId} = req.body;
           const [result] = await connection.query('SELECT * FROM User WHERE id = ?',[userId]);
           console.log(result);
@@ -84,8 +97,9 @@ const getUser = async (req,res) =>{
 }
 const updateUser = async (req,res)=>{
     try{
-         const {name,email,password,skills,interests,role,userId} = req.body;
+         const {name,email,password,skills,interests,role,userId,bio} = req.body;
          const image = req.file;     
+         console.log(name,email,password,skills,interests,role,userId,bio,image);
          if(!name || !email || !password || !role){
             throw new Error("Invalid Credentials");
          }
@@ -104,7 +118,7 @@ const updateUser = async (req,res)=>{
                const salt = await bcrypt.genSalt(10);
                const hashedPassword = await bcrypt.hash(password,salt);
               await connection.execute(
-            'UPDATE User SET name = ?, email = ?, password = ?, image = ?, skills = ?, interests = ?, role = ? WHERE id = ?',
+            'UPDATE User SET name = ?, email = ?, password = ?, image = ?, skills = ?, interests = ?, role = ?, bio = ? WHERE id = ?',
             [
                 name,
                 email,
@@ -113,6 +127,7 @@ const updateUser = async (req,res)=>{
                 skills,
                 interests,
                 role,
+                bio,
                 userId
             ]
         );
@@ -141,4 +156,4 @@ const deleteUser = async (req,res) => {
     }
 }
 
-module.exports = {userRegister,userLogin,getAllUsers,deleteUser,updateUser,getUser};
+module.exports = {userRegister,userLogin,getAllUsers,deleteUser,updateUser,getUser,getAuthUser};
