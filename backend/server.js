@@ -50,16 +50,11 @@ app.get('/create-table', async (req, res) => {
     `;
   
     try {
-      const connection = await mysql.createPool({
-        host: 'localhost',
-        user: 'root',
-        password: 'password',
-        database: 'your_database_name',
-      });
+     
   
       // Start a transaction to ensure atomicity
-      const transactionConnection = await connection.getConnection();
-      await transactionConnection.beginTransaction();
+      // const transactionConnection = await connection.getConnection();
+      // await transactionConnection.beginTransaction();
   
       // Loop through userData and execute the insert query for each user
       for (const user of userData) {
