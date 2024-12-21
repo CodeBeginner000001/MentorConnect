@@ -26,7 +26,9 @@ useEffect(()=>{
            console.log(e.message);
     }
   }
-  fetchData();
+  if(token){
+   fetchData();
+  }
 },[]);
   return (
     <>
