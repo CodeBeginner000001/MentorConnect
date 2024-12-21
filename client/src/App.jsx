@@ -16,7 +16,12 @@ useEffect(()=>{
  try{
           const response = await axios.get("https://mentorship-platform-9tzl.onrender.com/api/user/getAuthUser",{headers:{"token":token}})
           // console.log(response.data.result[0]);
+          if(response.data.success){
+        console.log(response.data);
           setUserData(response.data.result[0]);
+          }else{
+            throw new Error(response.data.msg);
+          }
     }catch(e){
            console.log(e.message);
     }
