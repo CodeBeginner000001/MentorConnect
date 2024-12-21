@@ -23,9 +23,11 @@ const EditProfile = ({token}) => {
       }
       fetchData();
     },[]);
+    const [img,setImg] = useState("");
     useEffect(()=>{
       setSkills(userData.skills || []);
       setInterests(userData.interests || []);
+            setImg(userData.image);
     },[userData]);
     const handleupload = ()=>{
         uploadElement.current.click();
@@ -109,6 +111,8 @@ const EditProfile = ({token}) => {
         // Append the uploaded image if it exists
         if (uploadprofileImage) {
             formData.append('image', uploadprofileImage);
+        }else{
+          formData.append('image', img);
         }
         for (const [key, value] of formData.entries()) {
           console.log(key, value); // This will log each key-value pair in the FormData

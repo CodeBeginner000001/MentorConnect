@@ -4,7 +4,13 @@ const cors = require("cors");
 const { userRouter } = require("./routes/userRoutes.js");
 const {connectToCloudinary} = require("./config/cloudinary.js");
 const app = express();
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcryptjs');
 const port = 3000;
+const cloudinary = require("cloudinary").v2;
+const createToken = (id)=>{
+    return jwt.sign({id},process.env.JWT_SECRET);
+}
 const userData = require("./schema/userData.js");
 connectToCloudinary();
 const mysql = require('mysql2/promise');// For promise-based MySQL operations
@@ -41,14 +47,14 @@ app.get('/create-table', async (req, res) => {
     }
   });
   app.post('/add-users', async (req, res) => {
-    const userData = req.body; // Assume userData is passed in the request body as an array of objects
+    // const userData = req.body; // Assume userData is passed in the request body as an array of objects
   
     // Query for inserting multiple rows
     const insertQuery = `
       INSERT INTO User (name, bio, image, email, password, skills, interests, role)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
-  
+  // const query = 'DELETE FROM User';
     try {
      
   
@@ -56,7 +62,7 @@ app.get('/create-table', async (req, res) => {
       // const transactionConnection = await connection.getConnection();
       // await transactionConnection.beginTransaction();
   
-      // Loop through userData and execute the insert query for each user
+  //     // Loop through userData and execute the insert query for each user
       for (const user of userData) {
         const {
           name,
@@ -68,22 +74,27 @@ app.get('/create-table', async (req, res) => {
           interests,
           role,
         } = user;
-  
+   let imageUrl = '';
+                 if(image != null){
+                     const uploadedImage = await cloudinary.uploader.upload(image, { resource_type: 'image' });
+                     imageUrl = uploadedImage.secure_url;
+                 }      
+                 const salt = await bcrypt.genSalt(10);
+                 const hashedPassword = await bcrypt.hash(password,salt);
         // Insert each user into the database
-        await transactionConnection.execute(insertQuery, [
+        await connection.execute(insertQuery, [
           name,
           bio,
-          image,
+          imageUrl,
           email,
-          password,
+          hashedPassword,
           JSON.stringify(skills), // Serialize JSON fields
           JSON.stringify(interests),
           role,
         ]);
       }
-  
       // Commit the transaction after all inserts succeed
-      await transactionConnection.commit();
+      // await transactionConnection.commit();
       console.log('All users added successfully!');
       res.status(201).send('All users added successfully!');
     } catch (err) {
