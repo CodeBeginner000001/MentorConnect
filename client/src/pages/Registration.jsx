@@ -95,7 +95,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-      const response = await axios.post("http://localhost:3000/api/user/register", formData, {
+      const response = await axios.post("https://mentorship-platform-9tzl.onrender.com/api/user/register", formData, {
           headers: {
               'Content-Type': 'multipart/form-data'
           }

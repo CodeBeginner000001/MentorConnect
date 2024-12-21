@@ -10,7 +10,7 @@ const EditProfile = ({token}) => {
     useEffect(()=>{
       const fetchData = async () =>{
      try{
-              const response = await axios.get("http://localhost:3000/api/user/getUser",{headers:{"token":token}})
+              const response = await axios.get("https://mentorship-platform-9tzl.onrender.com/api/user/getUser",{headers:{"token":token}})
               // console.log(response.data.result[0]);
               setUserData(response.data.result[0]);
               setSkills(userData.skills || []);
