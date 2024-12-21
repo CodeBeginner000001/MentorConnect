@@ -11,7 +11,7 @@ const Network = ({token}) => {
  useEffect(()=>{
   const fetchData = async () =>{
     try{
-      const response = await axios.get('http://localhost:3000/api/user/getUsers');
+      const response = await axios.get('/api/user/getUsers');
       if(response.data.success){
          setNetworkdata(response.data.results);
         // console.log(response.data.results);
