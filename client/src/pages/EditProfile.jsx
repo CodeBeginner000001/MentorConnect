@@ -14,8 +14,6 @@ const EditProfile = ({token}) => {
               // console.log(response.data.result[0]);
               if(response.data.success){
                 setUserData(response.data.result[0]);
-                setSkills(userData.skills || []);
-                setInterests(userData.interests || []);
               }else{
                 throw new Error(response.data.msg);
               }
@@ -25,6 +23,10 @@ const EditProfile = ({token}) => {
       }
       fetchData();
     },[]);
+    useEffect(()=>{
+      setSkills(userData.skills || []);
+      setInterests(userData.interests || []);
+    },[userData]);
     const handleupload = ()=>{
         uploadElement.current.click();
     }
