@@ -2,29 +2,12 @@ import { ProfileCard } from "../Components";
 import { useEffect, useState } from "react";
 import profilePic from "/src/assets/Two People Greeting.jpg";
 import axios from "axios";
-const Network = ({token}) => {
+const Network = ({token,networkdata}) => {
   let i=0;
   let [filterskill,setFilterskill]= useState([])
   let [filterinterest,setFilterinterest]= useState([])
   let [filterRole,setfilterRole] = useState([])
-  let [networkdata, setNetworkdata] = useState([]);
- useEffect(()=>{
-  const fetchData = async () =>{
-    try{
-      const response = await axios.get('https://mentorship-platform-9tzl.onrender.com/api/user/getUsers');
-      if(response.data.success){
-         setNetworkdata(response.data.results);
-        // console.log(response.data.results);
-      }else{
-        throw new Error(response.data.msg);
-      }
-     
-    }catch(e){
-      console.log(e.message);
-    }
-  }
-  fetchData();
- },[])
+ 
   const handleSkill = (e)=>{
     let skill=e.target.value;
     if(filterskill.includes(skill))
@@ -153,7 +136,7 @@ const Network = ({token}) => {
             </div>
           </div>
           <div className="d-flex flex-wrap column-gap-4 row-gap-5 ms-3 justify-content-center">
-            {networkdata.length > 0 && networkdata.map((user) => (
+            {networkdata && networkdata.length > 0 && networkdata.map((user) => (
               <ProfileCard
                 profilePic={user.image}
                 name={user.name}

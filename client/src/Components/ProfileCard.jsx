@@ -4,7 +4,7 @@ const ProfileCard = ({profilePic,name,bio,role,userId,token}) => {
   return (
     <>
       <Link to={token ? `user/${userId}` : '/login'}  className="card border border-dark-subtle" style={{width: "18rem"}}>
-      <span className="position-absolute start-50 translate-middle badge rounded-pill text-bg-success" style={{top:"10px"}}>
+      <span className="position-absolute start-50 translate-middle badge rounded-pill text-bg-warning" style={{top:"10px"}}>
         {role}
       </span>
         <img src={profilePic} className="card-img-top h-50" alt={profilePic} />

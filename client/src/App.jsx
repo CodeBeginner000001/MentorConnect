@@ -11,6 +11,24 @@ function App() {
     localStorage.setItem('token',token);
     console.log(token);
 },[token])
+let [networkdata, setNetworkdata] = useState([]);
+useEffect(()=>{
+ const fetchData = async () =>{
+   try{
+     const response = await axios.get('https://mentorship-platform-9tzl.onrender.com/api/user/getUsers');
+     if(response.data.success){
+        setNetworkdata(response.data.results);
+       // console.log(response.data.results);
+     }else{
+       throw new Error(response.data.msg);
+     }
+    
+   }catch(e){
+     console.log(e.message);
+   }
+ }
+ fetchData();
+},[])
 useEffect(()=>{
   const fetchData = async () =>{
  try{
@@ -35,7 +53,7 @@ useEffect(()=>{
     <Router>
       <NavBar token={token} setToken={setToken} profileImage={userData.image}/>
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home networkdata={networkdata}/>}/>
         <Route path="/network/user/:userId" element={<ProfileDescription />} />
         <Route path="/signup"  element={<Registration setToken={setToken} />}/>
         <Route path="/login"  element={<Login setToken={setToken} />}/>
@@ -43,7 +61,7 @@ useEffect(()=>{
         <Route path="/changepass" element={<ChangePassword/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/contact" element={<Contact/>}/>
-        <Route path="/network" element={<Network token={token}/>}/>     
+        <Route path="/network" element={<Network token={token} networkdata={networkdata}/>}/>     
         <Route/>
       </Routes>
       <Footer/>

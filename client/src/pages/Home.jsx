@@ -1,41 +1,48 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
 import {ProfileCard} from "/src/Components"
 import profilePic from "/src/assets/Two People Greeting.jpg";
-const Home = () => {
+const Home = ({networkdata}) => {
   const navigate = useNavigate();
   const handleExplore = ()=>{
     navigate("/login")
   }
   let i=0;
-  let [somementor,setSomementor] = useState([]);
-  let [somementee,setSomementee] = useState([]);
-  let [networkdata, setNetworkdata] = useState([
-      {
-        name: "Adarsh Goyal",
-        profilePic: profilePic,
-        bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-        role: "mentor",
-      },
-      {
-        name: "Adarsh Goyal",
-        profilePic: profilePic,
-        bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-        role: "mentor",
-      },
-      {
-        name: "Adarsh Goyal",
-        profilePic: profilePic,
-        bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-        role: "mentor",
-      },
-      {
-        name: "Adarsh Goyal",
-        profilePic: profilePic,
-        bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-        role: "mentor",
-      },
-    ]);
+  let [mentor,setMentor] = useState([]);
+  let [mentee,setMentee] = useState([]);
+  useEffect(()=>{
+     let response = networkdata.filter((el)=>{return (el.role == "Mentor")});
+     setMentor(response.slice(0,4));
+     let response1 = networkdata.filter((el)=>{return (el.role == "Mentee")});
+     setMentee(response1.slice(0,4));
+     console.log(response);
+  },[])
+  // let [networkdata, setNetworkdata] = useState([
+  //     {
+  //       name: "Adarsh Goyal",
+  //       profilePic: profilePic,
+  //       bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+  //       role: "mentor",
+  //     },
+  //     {
+  //       name: "Adarsh Goyal",
+  //       profilePic: profilePic,
+  //       bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+  //       role: "mentor",
+  //     },
+  //     {
+  //       name: "Adarsh Goyal",
+  //       profilePic: profilePic,
+  //       bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+  //       role: "mentor",
+  //     },
+  //     {
+  //       name: "Adarsh Goyal",
+  //       profilePic: profilePic,
+  //       bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+  //       role: "mentor",
+  //     },
+  //   ]);
   return (
     <>
     <div className="img-fluid background w-auto d-flex flex-column align-items-center justify-content-center">
@@ -46,7 +53,7 @@ const Home = () => {
       <h1>Our Mentors</h1>
       <div className="d-flex  overflow-x-scroll px-3 pb-3 justify-content-xl-center" style={{width:"100vw"}} >
       <div className="d-flex flex-row gap-4">
-      {networkdata.map((user) => (
+      {mentor.map((user) => (
               <ProfileCard
                 profilePic={user.profilePic}
                 name={user.name}
@@ -63,7 +70,7 @@ const Home = () => {
       <h1>Our Mentee</h1>
       <div className="d-flex overflow-x-scroll px-3 pb-3 justify-content-xl-center" style={{width:"100vw"}}>
       <div className="d-flex flex-row gap-4">
-      {networkdata.map((user) => (
+      {mentee.map((user) => (
               <ProfileCard
                 profilePic={user.profilePic}
                 name={user.name}
