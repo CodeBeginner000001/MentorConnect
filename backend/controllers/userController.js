@@ -99,7 +99,8 @@ const updateUser = async (req,res)=>{
     try{
          const {name,email,password,skills,interests,role,userId,bio} = req.body;
          const image = req.file;     
-         console.log(name,email,password,skills,interests,role,userId,bio,image);
+        //  console.log(req.file);
+        //  console.log(name,email,password,skills,interests,role,userId,bio,image);
          if(!name || !email || !password || !role){
             throw new Error("Invalid Credentials");
          }
@@ -113,6 +114,10 @@ const updateUser = async (req,res)=>{
            if(image != null){
                const uploadedImage = await cloudinary.uploader.upload(image.path, { resource_type: 'image' });
                imageUrl = uploadedImage.secure_url;
+           }else{
+            let img = await connection.query('SELECT image FROM User WHERE id = ?',[userId]);
+            console.log(img);
+            imageUrl = img[0][0].image;
            }
                console.log(imageUrl);
                const salt = await bcrypt.genSalt(10);
@@ -132,9 +137,10 @@ const updateUser = async (req,res)=>{
             ]
         );
         const [[updatedUser]] = await connection.query('SELECT * FROM User WHERE id = ?',[userId]);
-        console.log(updatedUser);
+         console.log(updatedUser);
          res.send({success:true,updatedUser});
     }catch(e){
+        console.log(e.message);
         res.json({success:false,msg:e.message});
     }
 }
