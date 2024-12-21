@@ -107,7 +107,7 @@ const EditProfile = ({token}) => {
         for (const [key, value] of formData.entries()) {
           console.log(key, value); // This will log each key-value pair in the FormData
       }
-        const response = await axios.put("http://localhost:3000/api/user/updateUser ", formData, {
+        const response = await axios.put("https://mentorship-platform-9tzl.onrender.com/api/user/updateUser ", formData, {
             headers: {
                 "Content-Type": 'multipart/form-data',
                 "token": token
