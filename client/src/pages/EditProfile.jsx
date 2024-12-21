@@ -12,9 +12,13 @@ const EditProfile = ({token}) => {
      try{
               const response = await axios.get("https://mentorship-platform-9tzl.onrender.com/api/user/getAuthUser",{headers:{"token":token}})
               // console.log(response.data.result[0]);
-              setUserData(response.data.result[0]);
-              setSkills(userData.skills || []);
-              setInterests(userData.interests || []);
+              if(response.data.success){
+                setUserData(response.data.result[0]);
+                setSkills(userData.skills || []);
+                setInterests(userData.interests || []);
+              }else{
+                throw new Error(response.data.msg);
+              }
         }catch(e){
                console.log(e.message);
         }
