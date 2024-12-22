@@ -68,8 +68,8 @@ let i = 0;
       </div>
       {/* For Mentee */}
       <div>
-        <h1>Our Mentee</h1>
         <div className="container mt-4 d-flex flex-column justify-content-center align-items-center row-gap-4">
+        <h1>Our Mentee</h1>
           {/* show the mentor cards using the mentor data */}
           <div
             className="d-flex overflow-x-scroll px-3 pb-3 justify-content-xl-center"
