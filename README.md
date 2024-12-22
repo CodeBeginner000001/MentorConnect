@@ -1,12 +1,14 @@
 # MentorConnect
-
+<p align = "center">
+   <img width="1512" alt="Screenshot 2024-12-22 at 11 26 01 PM" src="https://github.com/user-attachments/assets/2fc828f0-151e-4693-aca3-d9b3a4d92d2c" />
+</p>
 MentorConnect is a global platform designed to bridge the gap between mentors and mentees, enabling them to connect, grow together, and support each other in their personal and professional journeys. With a user-friendly interface and robust backend support, MentorConnect fosters a community of growth and collaboration.
 
 ## Table of Contents
 
 1. [About](#about)
-2. [Getting Started](#getting-started)
-3. [File Structure](#file-structure)
+2. [File Structure](#file-structure)
+3. [Getting Started](#getting-started)
 4. [Backend](#backend)
    - [Routes](#routes)
    - [Middleware](#middleware)
@@ -18,10 +20,6 @@ MentorConnect is a global platform designed to bridge the gap between mentors an
 6. [Packages Used](#packages-used)
 7. [Final View](#final-view)
 8. [Contact](#contact)
-
-## About
-
-MentorConnect is designed to create meaningful connections between mentors and mentees worldwide. The platform facilitates personal and professional growth by providing tools to build relationships based on shared interests, skills, and goals. Whether you're looking to share your expertise or learn from others, MentorConnect is here to empower you.
 
 ## Getting Started
 
@@ -54,6 +52,10 @@ MentorConnect is designed to create meaningful connections between mentors and m
    npm start
    ```
 7. Access the application at `http://localhost:3000`.
+
+## About
+
+MentorConnect is designed to create meaningful connections between mentors and mentees worldwide. The platform facilitates personal and professional growth by providing tools to build relationships based on shared interests, skills, and goals. Whether you're looking to share your expertise or learn from others, MentorConnect is here to empower you.
 
 ## File Structure
 
@@ -118,7 +120,7 @@ The backend manages user interactions through the following API endpoints:
 ### Database and Hosting
 
 - **Database**: SQL database hosted on Google Cloud SQL for secure and reliable data storage.
-- **Hosting**: Google Cloud ensures robust performance and scalability.
+- **Hosting**: Backend is hosted on Render, providing scalable and efficient server deployment.
 
 ### Cloudinary and Google Cloud SQL
 
@@ -137,7 +139,8 @@ The client-side application, built using React.js, offers an intuitive user inte
 - **Contact.jsx**: A page to reach out to the admin team for queries.
 - **Register.jsx / Login.jsx**: User registration and authentication pages.
 - **ChangePassword.jsx / DeleteProfile.jsx**: User dashboard features for managing account settings.
-
+- **Hosting**: client is hosted on Render, providing scalable and efficient client deployment.
+  
 ### Tech Stack
 
 - **React.js**: A JavaScript library for building dynamic user interfaces efficiently with reusable components.
@@ -170,9 +173,35 @@ The client-side application, built using React.js, offers an intuitive user inte
    - Offers elegant toast notifications for user feedback.
    - Customizable with various styles and animation options.
    - Simple integration with React components.
+
 ## Final View
+- **Network Page**
+<p align = "center">
+   <img width="1512" alt="Screenshot 2024-12-22 at 11 46 51 PM" src="https://github.com/user-attachments/assets/6ea09d07-533e-4ef4-bca2-02bfc1f17150" />
+</p>
+<hr/>
+- **Login Page**
+<p align = "center">
+   <img width="1495" alt="Screenshot 2024-12-22 at 11 47 01 PM" src="https://github.com/user-attachments/assets/841ae11e-69ab-4d3c-8973-5d8722b3eec7" />
+</p>
+- **Create Account**
+<p align = "center">
+   <img width="1512" alt="Screenshot 2024-12-22 at 11 47 21 PM" src="https://github.com/user-attachments/assets/2a95e12d-c076-44ad-be96-11c0bcfea993" />
+</p>
+<hr/>
+- **User Dashboard Page**
+<p align = "center">
+<img width="1512" alt="Screenshot 2024-12-22 at 11 47 44 PM" src="https://github.com/user-attachments/assets/7d2414bf-2d14-4dd7-9e03-321b126582ae" />
+</p>
+- **Change Password Page**
+<p align = "center">
+   <img width="1512" alt="Screenshot 2024-12-22 at 11 48 01 PM" src="https://github.com/user-attachments/assets/7c695b6a-07f8-474c-9ce4-d04f56e4d1e5" />
+</p>
+<hr/>
 
 ## Contact
 
 For any inquiries, feedback, or support, feel free to reach out to us:
-**Email**: snehagupta7385@gmail.com
+
+- **Email**: snehagupta7385@gmail.com
+
