@@ -3,14 +3,16 @@ const bcrypt = require('bcryptjs');
 const validator = require("validator");
 const connection = require("../db.js");
 const cloudinary = require("cloudinary").v2;
+
+//function for creating the token
 const createToken = (id)=>{
     return jwt.sign({id},process.env.JWT_SECRET);
 }
+//user register
 const userRegister = async (req,res) => {
     try{
              let {name,email,bio,password,skills = null,interests = null ,role} = req.body;
-             let image = req.file;   
-             console.log(name,email,bio,password,role,interests,skills);  
+             let image = req.file;     
              if(!name || !email || !password || !role || !bio){
                 throw new Error("Invalid Credentials");
              }
@@ -34,31 +36,25 @@ const userRegister = async (req,res) => {
                const hashedPassword = await bcrypt.hash(password,salt);
                  await connection.execute('INSERT INTO User (name,email,password,image,skills,interests,role,bio) VALUES (?,?,?,?,?,?,?,?)',[name,email,hashedPassword,imageUrl,skills,interests,role,bio]);
                  const [[user]] = await connection.query('SELECT * FROM User WHERE email = ?',email);
-                console.log(user);
-        console.log(user.id);
                 const token = createToken(user.id);
                 res.send({success:true,token});
     }catch(e){
         res.json({success:false,msg:e.message});
     }
 }
+//user login
 const userLogin = async (req,res) => {
     try{
-        console.log("djirjrif");
                const {email,password} = req.body;
-               console.log(req.body);
                if(!email || !password){
                 throw new Error("Invalid Credentials");
                }
-               console.log("hiifjijgri")
                const [[user]] = await connection.query('SELECT * FROM User WHERE email = ?',[email]);
-               console.log(user);
                if(user == null){
                 throw new Error("User doesn't exist");
                }
                const isMatched = await bcrypt.compare(password,user.password);
                if(!isMatched){
-                console.log("hiever");
                 throw new Error("Invalid Credentials");
                }
                const token = createToken(user.id);
@@ -68,41 +64,40 @@ const userLogin = async (req,res) => {
     }
 } 
 
+//getting all users
 const getAllUsers = async (req,res) => {
 try{
     const [results] = await connection.query('SELECT * FROM User');
-    console.log(results);
     res.send({success:true,results});
 }catch(e){
     res.json({success:false,msg:e.message});
 }
 }
+//getting the user
 const getUser = async (req,res) =>{
     try{
           const {userId} = req.params;
           const [result] = await connection.query('SELECT * FROM User WHERE id = ?',[userId]);
-          console.log(result);
     res.send({success:true,result});
     }catch(e){
         res.json({success:false,msg:e.message});
     }
 }
+//getting the authorized user
 const getAuthUser = async (req,res) =>{
     try{
           const {userId} = req.body;
           const [result] = await connection.query('SELECT * FROM User WHERE id = ?',[userId]);
-          console.log(result);
     res.send({success:true,result});
     }catch(e){
         res.json({success:false,msg:e.message});
     }
 }
+//updating a user
 const updateUser = async (req,res)=>{
     try{
          const {name,email,password,skills,interests,role,userId,bio} = req.body;
          const image = req.file;     
-        //  console.log(req.file);
-        //  console.log(name,email,password,skills,interests,role,userId,bio,image);
          if(!name || !email || !password || !role){
             throw new Error("Invalid Credentials");
          }
@@ -118,10 +113,8 @@ const updateUser = async (req,res)=>{
                imageUrl = uploadedImage.secure_url;
            }else{
             let img = await connection.query('SELECT image FROM User WHERE id = ?',[userId]);
-            console.log(img);
             imageUrl = img[0][0].image;
            }
-               console.log(imageUrl);
                const salt = await bcrypt.genSalt(10);
                const hashedPassword = await bcrypt.hash(password,salt);
               await connection.execute(
@@ -139,18 +132,16 @@ const updateUser = async (req,res)=>{
             ]
         );
         const [[updatedUser]] = await connection.query('SELECT * FROM User WHERE id = ?',[userId]);
-         console.log(updatedUser);
          res.send({success:true,updatedUser});
     }catch(e){
-        console.log(e.message);
         res.json({success:false,msg:e.message});
     }
 }
+//updating the password
 const updatePassword = async (req,res)=>{
     try{
              const {userId,newPassword} = req.body;
              const password = await connection.query('SELECT password FROM User WHERE id = ?',[userId]);
-             console.log(password);
              if(password[0][0].password === newPassword){
                 throw new Error("Please enter a new password");
              }
@@ -162,10 +153,10 @@ const updatePassword = async (req,res)=>{
              await connection.query('UPDATE User SET password = ?',[hashedPassword]);
              res.json({success:true,msg:"Your Password is Changed"});
     }catch(e){
-        console.log(e.message);
         res.json({success:false,msg:e.message});
     }
 }
+//deleting a user
 const deleteUser = async (req,res) => {
     try{
         const {userId} = req.body;
@@ -174,10 +165,8 @@ const deleteUser = async (req,res) => {
          if (!user) {
              return res.json({ success: false, msg: "User not found" });
          }
- 
          // Delete the user from the database
          const [result] = await connection.execute('DELETE FROM User WHERE id = ?', [userId]);
-          console.log(result);
        res.send({success:true,msg:"User Deleted Successfully"});
     }catch(e){
         res.json({success:false,msg:e.message});

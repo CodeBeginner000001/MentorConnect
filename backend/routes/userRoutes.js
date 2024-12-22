@@ -1,8 +1,9 @@
 const express = require("express");
-const userRouter = express.Router(); // ✅ This is correct
+const userRouter = express.Router();
 const { userLogin, userRegister, getAllUsers,getUser,getAuthUser, updateUser, deleteUser, updatePassword } = require('../controllers/userController.js');
 const upload = require("../middleware/multer.js");
 const auth = require("../middleware/auth.js");
+//user routes
 userRouter.post('/register',upload.single('image'), userRegister);
 userRouter.post('/login',userLogin);
 userRouter.get('/getUsers',getAllUsers);

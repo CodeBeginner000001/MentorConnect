@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+//middleware for login authorization
 const auth = async (req,res,next) => {
     try{
         let {token} = req.headers;

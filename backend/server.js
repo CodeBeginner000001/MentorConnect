@@ -19,8 +19,10 @@ app.use(cors());
 app.listen(port,()=>{
     console.log("app is listening to port ",port);
 })
+//user api
 app.use("/api/user",userRouter);
 
+//for creating a table
 app.get('/create-table', async (req, res) => {
     const createTableQuery = `
       CREATE TABLE IF NOT EXISTS User (
@@ -39,29 +41,19 @@ app.get('/create-table', async (req, res) => {
     try {
       // Use await with the promise-based connection
       const [results] = await connection.execute(createTableQuery);
-      console.log('Table created:', results);
       res.send('Users table created successfully!');
     } catch (err) {
-      console.error('Error creating table:', err);
       res.status(500).send('Failed to create table');
     }
   });
-  app.post('/add-users', async (req, res) => {
-    // const userData = req.body; // Assume userData is passed in the request body as an array of objects
-  
+//for adding multiple users
+ app.post('/add-users', async (req, res) => {
     // Query for inserting multiple rows
     const insertQuery = `
       INSERT INTO User (name, bio, image, email, password, skills, interests, role)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
-  // const query = 'DELETE FROM User';
     try {
-     
-  
-      // Start a transaction to ensure atomicity
-      // const transactionConnection = await connection.getConnection();
-      // await transactionConnection.beginTransaction();
-  
   //     // Loop through userData and execute the insert query for each user
       for (const user of userData) {
         const {
@@ -93,12 +85,8 @@ app.get('/create-table', async (req, res) => {
           role,
         ]);
       }
-      // Commit the transaction after all inserts succeed
-      // await transactionConnection.commit();
-      console.log('All users added successfully!');
       res.status(201).send('All users added successfully!');
     } catch (err) {
-      console.error('Error adding users:', err.message);
       res.status(500).send('Failed to add users. See server logs for details.');
     }
   });

@@ -2,6 +2,7 @@
 .body{
     overflow-x: hidden;
 }
+/* used in NavBar to show profile */
 .showprofile{
     background-color: rgb(53, 52, 52);
     /* border: 2px black solid; */
@@ -9,30 +10,36 @@
     right: 50px;
     border-radius: 5px;
 }
+/* Used in NavBar to show profile in the window View*/
 .cursor1{
     cursor: pointer;
 }
+/* used in About, Contact and Home */
 .background{
     background-image: url('/src/assets/Two.png');
     background-size: cover;
     height: 100vh;
     width: 100vw;
 }
+/* Used in Home */
 .homeheading{
     font-size: 100px;
 }
-
+/* Used in About , contact , NavBar and App */
 .about{
     padding-top: 200px;
 }
+/* Used in About , Contact */
 .aboutheading{
     padding-top: 30px;
 }
+/* Used in About , Contact */
 .aboutpara{
     text-align: justify;
     font-size: 20px;
     padding: 20px 100px 80px;
 }
+/* Making responsive design */
 @media screen and (max-width:1200px) {
     .aboutpara{
         padding: 20px 60px 80px;
