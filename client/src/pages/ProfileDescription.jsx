@@ -44,7 +44,7 @@ const [userData,setUserData] = useState({});
                 {userData.skills && userData.skills.length > 0 && userData.skills.map((skill)=>{
                   return (
                           <li key={skill} className="me-2" style={{color:"#ffc107"}}>
-                            <span style={{marginLeft:"-8px",color:"black"}}>{skill}</span>
+                            <span style={{marginLeft:"-8px",color:"black"}} className="text-nowrap">{skill}</span>
                           </li> 
                   )
                 })}
@@ -64,7 +64,7 @@ const [userData,setUserData] = useState({});
               {userData.interests && userData.interests.length > 0 && userData.interests.map((interest)=>{
                 return (
                   <li key={interest} className="me-2" style={{color:"#ffc107"}}>
-                  <span style={{marginLeft:"-8px",color:"black"}}>{interest}</span>
+                  <span style={{marginLeft:"-8px",color:"black"}} className="text-nowrap">{interest}</span>
                 </li> 
                 )
                 })}

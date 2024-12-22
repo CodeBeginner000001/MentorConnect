@@ -48,7 +48,7 @@ useEffect(()=>{
   if(token != ''){
    fetchData();
   }
-},[]);
+},[token]);
   return (
     <>
     <Router>
