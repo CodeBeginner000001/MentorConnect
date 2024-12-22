@@ -22,11 +22,11 @@ let i = 0;
     let response = networkdata.filter((el) => {
       return el.role == "Mentor";
     });
-    setMentor(response.slice(0, 6));
+    setMentor(response.slice(0, 4));
     let response1 = networkdata.filter((el) => {
       return el.role == "Mentee";
     });
-    setMentee(response1.slice(0, 6));
+    setMentee(response1.slice(0, 4));
   }, [networkdata]);
 
   return (
