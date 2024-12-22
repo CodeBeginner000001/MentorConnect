@@ -63,13 +63,13 @@ const NavBar = ({token,setToken,profileImage}) => {
     <div>
       <nav className="navbar navbar-expand-lg bg-dark pb-3" data-bs-theme="dark">
         <div className="container-fluid mx-4">
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand d-flex justify-content-center align-items-center" href="/" >
             <img
               src={logo}
               alt="Logo"
               width="34"
               height="32"
-              className="d-inline-block align-text-top me-4"
+              className="d-inline-block align-text-top me-3"
             />
             MentorConnect
           </a>
