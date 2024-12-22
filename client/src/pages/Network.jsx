@@ -1,48 +1,11 @@
 import { ProfileCard } from "../Components";
-<<<<<<< HEAD
-import { useState } from "react";
-import profilePic from "/src/assets/Two People Greeting.jpg";
-const Network = () => {
-=======
 import { useEffect, useState } from "react";
 import axios from "axios";
-const Network = ({token,networkdata}) => {
->>>>>>> 2d644cd (files)
+const Network = ({token,networkdata,setNetworkdata}) => {
   let i=0;
   let [filterskill,setFilterskill]= useState([])
   let [filterinterest,setFilterinterest]= useState([])
   let [filterRole,setfilterRole] = useState([])
-<<<<<<< HEAD
-  let [networkdata, setNetworkdata] = useState([
-    {
-      name: "Adarsh Goyal",
-      profilePic: profilePic,
-      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-      role: "mentor",
-    },
-    {
-      name: "Adarsh Goyal",
-      profilePic: profilePic,
-      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-      role: "mentor",
-    },
-    {
-      name: "Adarsh Goyal",
-      profilePic: profilePic,
-      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-      role: "mentor",
-    },
-    {
-      name: "Adarsh Goyal",
-      profilePic: profilePic,
-      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
-      role: "mentor",
-    },
-  ]);
-
-=======
- 
->>>>>>> 2d644cd (files)
   const handleSkill = (e)=>{
     let skill=e.target.value;
     if(filterskill.includes(skill))
@@ -50,20 +13,18 @@ const Network = ({token,networkdata}) => {
       setFilterskill(filterskill.filter((item)=>item!==skill))
     }else
     {
-      filterskill.push(skill);
+      setFilterskill([...filterskill,skill]);
     }
-    console.log(filterskill)
   }
   const handleRole = (e)=>{
-    let role=e;
+    let role=e.target.value;
     if(filterRole.includes(role))
     {
       setfilterRole(filterRole.filter((item)=>item!==role))
     }else
     {
-      filterRole.push(role);
+      setfilterRole([...filterRole,role]);
     }
-    console.log(filterRole)
   }
   const handleInterest = (e)=>{
     let interest=e.target.value;
@@ -72,14 +33,9 @@ const Network = ({token,networkdata}) => {
       setFilterinterest(filterinterest.filter((item)=>item!==interest))
     }else
     {
-      filterinterest.push(interest);
+      setFilterinterest([...filterinterest,interest]);
     }
-    console.log(filterinterest)
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2d644cd (files)
   const skills = [
     'JavaScript',
     'React',
@@ -105,6 +61,27 @@ const Network = ({token,networkdata}) => {
     "Mentor",
     "Mentee",
   ]
+  const [filteredNetwork,setFilteredNetwork] = useState([]);
+  useEffect(()=>{
+         let newData = networkdata.slice();
+         console.log(filterRole);
+         console.log(filterskill);
+         console.log(filterinterest);
+         if(filterRole.length > 0){
+          newData = newData.filter((item) => filterRole.includes(item.role));
+         }
+         if(filterinterest.length > 0){
+          newData = newData.filter((item) =>  item.interests.some((interest) => filterinterest.includes(interest)));
+         }
+         if(filterskill.length > 0){
+          console.log("skills section")
+            console.log(newData);
+            console.log(filterskill)
+          newData = newData.filter((item) =>  item.skills.some((skill) => filterskill.includes(skill)));
+          console.log(newData);
+         }
+         setFilteredNetwork(newData);
+  },[networkdata,filterRole,filterinterest,filterskill])
   return (
     <>
       <div className="container d-flex flex-column flex-sm-row" >
@@ -118,7 +95,7 @@ const Network = ({token,networkdata}) => {
               {
                 roles.map((role)=>(
                   <div className="text-nowrap" key={role}>
-                    <input type="checkbox" value={role} onClick={()=>{handleRole(role)}}/>
+                    <input type="checkbox" value={role} onClick={handleRole}/>
                     <label className="ms-2">{role}</label>
                   </div>
                 ))
@@ -156,35 +133,9 @@ const Network = ({token,networkdata}) => {
         <div>
           <div className="d-flex justify-content-between align-items-center pt-5 pb-3 flex-wrap">
             <h2>People Around World </h2>
-            <div className="btn-group">
-              <button
-                className="btn btn-light border btn-sm dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span className="me-2">Sort by: Relavent</span>
-              </button>
-              <ul className="dropdown-menu dropdown-menu-dark">
-                {
-                  roles.map((role)=>(
-                    <li className="dropdown-item" key={i++} value={role} onClick={()=>{handleRole(role)}}>Sort by: {role}</li>
-                  ))
-                }
-              </ul>
-            </div>
           </div>
           <div className="d-flex flex-wrap column-gap-4 row-gap-5 ms-3 justify-content-center">
-<<<<<<< HEAD
-            {networkdata.map((user) => (
-              <ProfileCard
-                profilePic={user.profilePic}
-                name={user.name}
-                bio={user.bio}
-                role={user.role}
-                key={i++}
-=======
-            {networkdata && networkdata.length > 0 && networkdata.map((user) => (
+            {filteredNetwork && filteredNetwork.length > 0 && filteredNetwork.map((user) => (
               <ProfileCard
                 profilePic={user.image}
                 name={user.name}
@@ -193,7 +144,6 @@ const Network = ({token,networkdata}) => {
                 key={user.id}
                 userId={user.id}
                 token={token}
->>>>>>> 2d644cd (files)
               />
             ))}
           </div>

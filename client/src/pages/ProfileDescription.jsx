@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import defaultImage from "/src/assets/default image.jpg"
 import axios from "axios"
 import { useParams } from "react-router-dom"
-
 const ProfileDescription = () => {
 const {userId} = useParams();
 const [userData,setUserData] = useState({});
   useEffect(()=>{
     const fetchData = async () =>{
               try{
+                console.log(userId);
                       const response = await axios.get(`https://mentorship-platform-9tzl.onrender.com/api/user/getUser/${userId}`);
                       if(response.data.success){
                         setUserData(response.data.result[0]);
@@ -65,7 +65,7 @@ const [userData,setUserData] = useState({});
               {userData.interests && userData.interests.length > 0 && userData.interests.map((interest)=>{
                 return (
                           <div key={interest}>
-                          <span className="px-2 rounded-circle bg-warning me-1"></span>
+                          <span className="px-2 rounded-circle bg-warning me-1" style={{height:"4px",width:"4px"}}></span>
                           <span>{interest}</span>
                           </div> 
                 )

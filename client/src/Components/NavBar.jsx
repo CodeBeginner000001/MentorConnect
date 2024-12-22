@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-<<<<<<< HEAD
-import logo from "/src/assets/Two People Greeting.jpg";
-import { useNavigate,Link } from "react-router-dom";
-const NavBar = () => {
-=======
 import logo from "/src/assets/logo.png";
+import defaults from "/src/assets/default image.jpg";
 import { useNavigate,Link } from "react-router-dom";
+import { toast } from "react-toastify";
 const NavBar = ({token,setToken,profileImage}) => {
->>>>>>> 2d644cd (files)
   const navigate = useNavigate();
   const handleNavigatetosigup = ()=>{
     navigate("/signup")
@@ -21,13 +17,6 @@ const NavBar = ({token,setToken,profileImage}) => {
   };
 
   const handleloginClick = () => {
-<<<<<<< HEAD
-    setLoginState(!loginState);
-    if(showprofile)
-    {
-      setShowprofile(!showprofile);
-    }
-=======
     // if(token){
     //   setLoginState(!loginState);
     // }
@@ -35,7 +24,6 @@ const NavBar = ({token,setToken,profileImage}) => {
     // {
     //   setShowprofile(!showprofile);
     // }
->>>>>>> 2d644cd (files)
     navigate("/login")
   };
 
@@ -44,33 +32,24 @@ const NavBar = ({token,setToken,profileImage}) => {
   };
 
   const handleEditprofile = ()=>{
-<<<<<<< HEAD
-    navigate("/edit")
-  }
-  const handleDeleteProfile = ()=>{
-    navigate("/delete")
-  }
-  const handleLogout=()=>{
-    setLoginState(!loginState);
-    setShowprofile(!showprofile);
-=======
     setShowprofile(!showprofile);
     navigate("/edit")
   }
   const handleDeleteProfile = ()=>{
     setShowprofile(!showprofile);
-    navigate("/delete")
+    navigate("/deleteProfile");
   }
   const handleLogout=()=>{
     // setLoginState(!loginState);
     setShowprofile(!showprofile);
     // localStorage.removeItem('token');
     setToken('');
->>>>>>> 2d644cd (files)
-    navigate("/")
+    toast.success("Logout Successfull");
+    navigate("/");
   }
   const handleChangepass = ()=>{
-    navigate("/changepass")
+    setShowprofile(!showprofile);
+    navigate("/changepass",{ state: { token }})
   }
 
   useEffect(() => {
@@ -88,13 +67,8 @@ const NavBar = ({token,setToken,profileImage}) => {
             <img
               src={logo}
               alt="Logo"
-<<<<<<< HEAD
-              width="30"
-              height="24"
-=======
               width="34"
               height="32"
->>>>>>> 2d644cd (files)
               className="d-inline-block align-text-top me-4"
             />
             Bootstrap
@@ -102,17 +76,10 @@ const NavBar = ({token,setToken,profileImage}) => {
           <div className="d-flex">
           <div className={isMobile ? "d-flex" : "d-none"}>
               <img
-<<<<<<< HEAD
-                src={logo}
-                alt=""
-                className={`border border-dark-subtle rounded-circle align-self-center object-fit-cover ${
-                  loginState ? "d-flex me-4" : "d-none"
-=======
-                src={profileImage}
+                src={profileImage ? profileImage :defaults}
                 alt=""
                 className={`border border-dark-subtle rounded-circle align-self-center object-fit-cover ${
                   token ? "d-flex me-4" : "d-none"
->>>>>>> 2d644cd (files)
                 }`}
                 width="40px"
                 height="40px"
@@ -166,51 +133,30 @@ const NavBar = ({token,setToken,profileImage}) => {
             <div className="d-flex gap-3">
               <button
                 type="button"
-<<<<<<< HEAD
-                className={`btn btn-warning ${loginState ? "d-none" : "d-flex"}`}
-=======
                 className={`btn btn-warning ${token ? "d-none" : "d-flex"}`}
->>>>>>> 2d644cd (files)
                 onClick={handleNavigatetosigup}
               >
                 Create Account
               </button>
               <button
                 type="button"
-<<<<<<< HEAD
-                className={`btn btn-warning ${loginState ? "d-none" : "d-flex"}`}
-=======
                 className={`btn btn-warning ${token ? "d-none" : "d-flex"}`}
->>>>>>> 2d644cd (files)
                 onClick={handleloginClick}
               >
                 Login
               </button>
-<<<<<<< HEAD
-              <div className={loginState ? "d-flex" : "d-none"}>
-              <img
-                src={logo}
-                alt=""
-                className={`border border-dark-subtle rounded-circle align-self-center object-fit-cover cursor1 ${
-                  isMobile ? loginState ? "d-none" : "d-flex":"d-flex"
-=======
               <div className={token ? "d-flex" : "d-none"}>
               <img
                 src={profileImage}
                 alt=""
                 className={`border border-dark-subtle rounded-circle align-self-center object-fit-cover cursor1 ${
                   isMobile ? token ? "d-none" : "d-flex":"d-flex"
->>>>>>> 2d644cd (files)
                 }`}
                 width="40px"
                 height="40px"
                 onClick={handleClick}
               />
-<<<<<<< HEAD
-              <div className={`d-flex flex-column gap-2 p-3 position-absolute showprofile text-white ${showprofile ? 'd-flex' : 'd-none'}`}>
-=======
               <div className={`d-flex z-1 flex-column gap-2 p-3 position-absolute showprofile text-white ${showprofile ? 'd-flex' : 'd-none'}`}>
->>>>>>> 2d644cd (files)
                 <p className="mb-0 text-center" type="button" onClick={handleEditprofile}>Edit Profile</p>
                 <p className="mb-0 text-center" type="button" onClick={handleDeleteProfile}>Delete Profile</p>
                 <p className="mb-0" type="button" onClick={handleChangepass}>Change password</p>

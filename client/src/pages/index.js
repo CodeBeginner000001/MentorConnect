@@ -5,7 +5,8 @@ import ChangePassword from "./ChangePassword";
 import Home from "./Home";
 import About from "./About";
 import Contact from "./Contact";
-import Network from "./Network"
+import Network from "./Network";
+import DeleteProfile from './DeleteProfile';
 export{
     Registration,
     Login,
@@ -15,4 +16,5 @@ export{
     About,
     Contact,
     Network,
+    DeleteProfile
 }

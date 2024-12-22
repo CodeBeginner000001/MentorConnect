@@ -1,20 +1,14 @@
 import { useRef,useState } from "react";
 import Upload_Image_logo from "/src/assets/Upload Image.png"
-<<<<<<< HEAD
-const Registration = () => {
-=======
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Registration = ({setToken}) => {
->>>>>>> 2d644cd (files)
     let [uploadprofileImage,setUploadprofileImage]=useState()
     const [value, setValue] = useState('');
     const [height, setHeight] = useState('auto');
     const uploadElement = useRef();
-<<<<<<< HEAD
-=======
     const navigate = useNavigate();
->>>>>>> 2d644cd (files)
     const handleupload = ()=>{
         uploadElement.current.click();
     }
@@ -76,26 +70,18 @@ const Registration = ({setToken}) => {
   const handleRemoveInterest = (interest) => {
     setInterests(interests.filter((s) => s !== interest));
   };
-<<<<<<< HEAD
-
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-    const skillsQueryString = skills.map(skill => `skills=${skill}`).join('&');
-    const interestsQueryString = interests.map(interest => `interests=${interest}`).join('&');
-    const queryString = `${skillsQueryString}&${interestsQueryString}`;
-    const url = `https://example.com/submit?${queryString}`;
-    console.log(url);
-  }
-=======
 const [email,setEmail] = useState('');
 const [password,setPassword] = useState('');
+const [confirmpassword,setconfirmpassword] = useState('');
 // const []
 const handleSubmit = async (e) => {
   e.preventDefault(); // Prevent the default form submission
 
   // Create a FormData object to hold the form data
   const formData = new FormData();
-  
+  if(password !== confirmpassword){
+    return toast.error("Your password does not match with the confirmed password");
+  }
   // Append the values from the form fields
   formData.append('name', e.target.name.value);
   formData.append('email', e.target.email.value);
@@ -104,7 +90,7 @@ const handleSubmit = async (e) => {
   formData.append('skills', JSON.stringify(skills)); // Skills as a JSON string
   formData.append('interests', JSON.stringify(interests)); // Interests as a JSON string
   formData.append('password', e.target.password.value);
-  formData.append('cpassword', e.target.cpassword.value);
+  // formData.append('cpassword', e.target.cpassword.value);
   formData.append('role', e.target.role.value);
 
   // Log the FormData entries to the console
@@ -119,20 +105,20 @@ const handleSubmit = async (e) => {
           }
       });
       if(response.data.success){
-        console.log(response.data.token);
-        console.log(typeof setToken);
+        // console.log(response.data.token);
+        // console.log(typeof setToken);
+        toast.success("Account Created Successfully");
             setToken(response.data.token);
-           
             navigate('/');
       }else{
         throw new Error(response.data.msg);
       }
       console.log(response);
   } catch (error) {
+    toast.error(error.message);
       console.log(error);
   }
 };
->>>>>>> 2d644cd (files)
   return (
     <div className="container mt-4 mb-4">
       <h1 className="mb-2">Create Your Profile</h1>
@@ -145,38 +131,26 @@ const handleSubmit = async (e) => {
         {/* for Username*/}
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Username :</label>
-<<<<<<< HEAD
-          <input type="text" className="form-control" id="username" name="username" placeholder="Enter your username"/>
-=======
-          <input type="text" className="form-control" id="username" name="name" placeholder="Enter your username"/>
->>>>>>> 2d644cd (files)
+          <input type="text" className="form-control" id="username" name="name" required placeholder="Enter your username"/>
         </div>
 
         {/* for email id */}
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email Address :</label>
-          <input type="email" className="form-control" id="email" name="email" placeholder="Enter your Email Address"/>
+          <input type="email" className="form-control" id="email" name="email" required placeholder="Enter your Email Address"/>
         </div>
 
         {/* Bio */}
         <div className="mb-3">
           <label htmlFor="divbio" className="form-label">Bio :</label>
-<<<<<<< HEAD
-          <textarea className="form-control" id="bio" placeholder="Write a Bio" onChange={handleOnChange} style={{height}} value={value}/>
-=======
-          <textarea className="form-control" id="bio" name="bio" placeholder="Write a Bio" onChange={handleOnChange} style={{height}} />
->>>>>>> 2d644cd (files)
+          <textarea className="form-control" id="bio" name="bio" placeholder="Write a Bio" required onChange={handleOnChange} style={{height}} />
           {/* <textarea  style="overflow:hidden"></textarea> */}
         </div>
 
         {/* Upload image */}
         <div className="mb-3">
           <label htmlFor="profileImage" className="form-label">Upload your image :</label>
-<<<<<<< HEAD
-          <input className="form-control form-control-sm" id="profileImage" name="profileImage" type="file" accept="image/png,image/jpeg,image/jpg" onChange={handleImageChange} ref={uploadElement}/>
-=======
           <input className="form-control form-control-sm" id="profileImage" name="image" type="file" accept="image/png,image/jpeg,image/jpg" onChange={handleImageChange} ref={uploadElement}/>
->>>>>>> 2d644cd (files)
         </div>
 
         {/* For Skills */}
@@ -184,7 +158,7 @@ const handleSubmit = async (e) => {
           <label htmlFor="skills" className="form-label">Skills :</label>
           <select
             className="form-select"
-            id="skills"
+            id="skills" required
             onChange={(e) => handleAddSkill(e.target.value)}
           >
             <option value="">Select a skill</option>
@@ -217,7 +191,7 @@ const handleSubmit = async (e) => {
           <label htmlFor="interest" className="form-label">Interests :</label>
           <select
             className="form-select"
-            id="interest"
+            id="interest" required
             onChange={(e) => handleAddInterest(e.target.value)}
           >
             <option value="">Select an Interest </option>
@@ -248,19 +222,19 @@ const handleSubmit = async (e) => {
         {/* for password */}
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password :</label>
-          <input type="password" className="form-control" id="password" name= "password" placeholder="Enter your Password"/>
+          <input type="password" className="form-control" id="password" required name= "password" placeholder="Enter your Password"/>
         </div>
 
         {/* for confirm password */}
         <div className="mb-3">
           <label htmlFor="cpassword" className="form-label">Confirm Password :</label>
-          <input type="password" className="form-control" id="cpassword" name= "cpassword" placeholder="Enter your Password"/>
+          <input type="password" className="form-control" id="cpassword" required value={confirmpassword} onChange={(e)=>{setconfirmpassword(e.target.value)}} placeholder="Enter your Password"/>
         </div>
 
         {/* Role */}
         <div className="mb-3">
             <label htmlFor="role" className="form-label">Role:</label>
-            <select name="role" id="role" className="form-select">
+            <select name="role" required id="role" className="form-select">
               <option value="">Select your role</option>
               {roleOptions.map((role)=>(
                 <option key={role} value={role}>{role}</option>
@@ -270,7 +244,7 @@ const handleSubmit = async (e) => {
         
         {/* Checkbox for agreement */}
         <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+          <input type="checkbox" className="form-check-input" id="exampleCheck1" required/>
           <label className="form-check-label" htmlFor="exampleCheck1">I have agreed to the terms and conditions</label>
         </div>
 

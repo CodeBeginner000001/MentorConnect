@@ -58,6 +58,7 @@ const userLogin = async (req,res) => {
                }
                const isMatched = await bcrypt.compare(password,user.password);
                if(!isMatched){
+                console.log("hiever");
                 throw new Error("Invalid Credentials");
                }
                const token = createToken(user.id);
@@ -65,7 +66,8 @@ const userLogin = async (req,res) => {
     }catch(e){
                  res.json({success:false,msg:e.message});
     }
-}
+} 
+
 const getAllUsers = async (req,res) => {
 try{
     const [results] = await connection.query('SELECT * FROM User');
@@ -155,7 +157,9 @@ const updatePassword = async (req,res)=>{
              if(newPassword.length < 8){
                 return res.json({success:false,msg:"Please enter a strong password"});
              }
-             await connection.query('UPDATE User SET password = ?',[newPassword]);
+             const salt = await bcrypt.genSalt(10);
+             const hashedPassword = await bcrypt.hash(newPassword,salt);
+             await connection.query('UPDATE User SET password = ?',[hashedPassword]);
              res.json({success:true,msg:"Your Password is Changed"});
     }catch(e){
         console.log(e.message);

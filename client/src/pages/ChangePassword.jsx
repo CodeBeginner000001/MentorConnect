@@ -1,4 +1,43 @@
+import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 const ChangePassword = () => {
+  const [currentPassword,setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmpassword,setconfirmpassword] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
+    const handleClick = async (e) =>{
+      e.preventDefault();
+      try{
+
+if(currentPassword == '' || newPassword == '' || confirmpassword == ''){
+  return toast.error("Please enter all the fields")
+}
+        if(currentPassword == newPassword ){
+        return toast.error("Your new password should not be same as your current password");
+        }
+        if(confirmpassword != newPassword){
+       return  toast.error("Your new password does not match with your confirmed password");
+        }
+        const token = location.state?.token;
+        // const token = location.state?.token; // Check if token is available
+        if (!token) {
+          return toast.error("No token found, please log in again.");
+        }
+        console.log(token);
+         const response = await axios.put("https://mentorship-platform-9tzl.onrender.com/api/user/updatePassword",{"newPassword":newPassword},{headers:{"token":token}});
+         if(response.data.success){
+                toast.success("Password Updated");
+                navigate('/');
+         }else{
+           throw new Error(response.data.msg);
+         }
+      }catch(e){
+        toast.error(e.message);
+      }
+  }
   return (
     <div className="mx-auto p-2 container" style={{ marginTop: "50px" }}>
       <h1 className="mb-5">Change Password</h1>
@@ -15,6 +54,8 @@ const ChangePassword = () => {
               id="current"
               className="form-control"
               aria-describedby="passwordHelpInline"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
             />
           </div>
         </div>
@@ -30,6 +71,8 @@ const ChangePassword = () => {
               id="new"
               className="form-control"
               aria-describedby="passwordHelpInline"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
             />
           </div>
           <div className="col-auto">
@@ -50,10 +93,12 @@ const ChangePassword = () => {
               id="confirmpassword"
               className="form-control"
               aria-describedby="passwordHelpInline"
+              value={confirmpassword}
+              onChange={(e) => setconfirmpassword(e.target.value)}
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-warning" id="confirm">
+        <button type="submit" className="btn btn-warning" onClick={handleClick} id="confirm">
           Change password
         </button>
       </form>
