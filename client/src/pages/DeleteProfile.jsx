@@ -22,11 +22,11 @@ const DeleteProfile = ({token,setUserData,setToken}) => {
     }
   return (
     <>
-    <div className="d-flex column" style={{height:"70vh",width:"100vw",margin:'auto'}}>
-    <h1>Are you sure you want to delete this profile?</h1>
-    <div className="d-flex">
-    <button className="btn" onClick={handleDelete}>Yes</button>
-    <button className="btn" onClick={()=>{navigate('/')}}>No</button>
+    <div className="container d-flex flex-column justify-content-center align-items-center gap-4" style={{height:"70vh",width:"100vw",margin:'auto'}}>
+    <h1 className="fs-4">Are you sure you want to delete this profile?</h1>
+    <div className="d-flex gap-3">
+    <button className="btn btn-warning" onClick={handleDelete}>Yes</button>
+    <button className="btn btn-dark" onClick={()=>{navigate('/')}}>No</button>
     </div>
     </div>
     </>
