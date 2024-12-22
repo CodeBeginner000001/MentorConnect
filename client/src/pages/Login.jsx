@@ -18,7 +18,7 @@ const Login = ({ setToken }) => {
       // }
 
       const response = await axios.post( // send a post request to the server
-        "https://mentorship-platform-server-2522.onrender.com/api/user/login",
+        "https://mentorconnect-server.onrender.com/api/user/login",
         formData,
         {
           headers: {
