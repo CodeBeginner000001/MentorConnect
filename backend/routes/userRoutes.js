@@ -1,6 +1,6 @@
 const express = require("express");
 const userRouter = express.Router(); // ✅ This is correct
-const { userLogin, userRegister, getAllUsers,getUser,getAuthUser, updateUser, deleteUser } = require('../controllers/userController.js');
+const { userLogin, userRegister, getAllUsers,getUser,getAuthUser, updateUser, deleteUser, updatePassword } = require('../controllers/userController.js');
 const upload = require("../middleware/multer.js");
 const auth = require("../middleware/auth.js");
 userRouter.post('/register',upload.single('image'), userRegister);
@@ -9,5 +9,6 @@ userRouter.get('/getUsers',getAllUsers);
 userRouter.get('/getAuthUser',auth,getAuthUser);
 userRouter.get('/getUser/:userId',getUser);
 userRouter.put('/updateUser',upload.single('image'),auth,updateUser);
+userRouter.put('/updatePassword',auth,updatePassword);
 userRouter.delete('/deleteUser',auth,deleteUser);
 module.exports = {userRouter};

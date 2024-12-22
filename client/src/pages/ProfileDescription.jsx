@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import logo from "../assets/Two People Greeting.jpg"
+import defaultImage from "/src/assets/default image.jpg"
 import axios from "axios"
 import { useParams } from "react-router-dom"
 
@@ -26,7 +26,7 @@ const [userData,setUserData] = useState({});
     <>
     {userData && <div className="m-5 px-5">
     <div className="d-flex flex-column flex-md-row row-gap-4 justify-content-between align-items-center px-5">
-    <img src={userData.image} className="rounded-circle" alt="..." width="300px" height="300px"/>
+    <img src={userData.image?userData.image:defaultImage} className="rounded-circle" alt="..." width="300px" height="300px"/>
     <div className="d-flex flex-column">
       <h1>{userData.name}</h1>
       <span className="badge text-bg-warning align-self-end px-4 fs-6 rounded-5 text-white">{userData.role}</span>

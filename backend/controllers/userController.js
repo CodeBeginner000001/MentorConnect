@@ -144,6 +144,24 @@ const updateUser = async (req,res)=>{
         res.json({success:false,msg:e.message});
     }
 }
+const updatePassword = async (req,res)=>{
+    try{
+             const {userId,newPassword} = req.body;
+             const password = await connection.query('SELECT password FROM User WHERE id = ?',[userId]);
+             console.log(password);
+             if(password[0][0].password === newPassword){
+                throw new Error("Please enter a new password");
+             }
+             if(newPassword.length < 8){
+                return res.json({success:false,msg:"Please enter a strong password"});
+             }
+             await connection.query('UPDATE User SET password = ?',[newPassword]);
+             res.json({success:true,msg:"Your Password is Changed"});
+    }catch(e){
+        console.log(e.message);
+        res.json({success:false,msg:e.message});
+    }
+}
 const deleteUser = async (req,res) => {
     try{
         const {userId} = req.body;
@@ -162,4 +180,4 @@ const deleteUser = async (req,res) => {
     }
 }
 
-module.exports = {userRegister,userLogin,getAllUsers,deleteUser,updateUser,getUser,getAuthUser};
+module.exports = {userRegister,userLogin,getAllUsers,deleteUser,updateUser,updatePassword,getUser,getAuthUser};
