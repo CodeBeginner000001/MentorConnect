@@ -180,19 +180,25 @@ The client-side application, built using React.js, offers an intuitive user inte
    <img width="1512" alt="Screenshot 2024-12-22 at 11 46 51 PM" src="https://github.com/user-attachments/assets/6ea09d07-533e-4ef4-bca2-02bfc1f17150" />
 </p>
 <hr/>
+
 - **Login Page**
 <p align = "center">
    <img width="1495" alt="Screenshot 2024-12-22 at 11 47 01 PM" src="https://github.com/user-attachments/assets/841ae11e-69ab-4d3c-8973-5d8722b3eec7" />
 </p>
+<hr/>
+
 - **Create Account**
 <p align = "center">
    <img width="1512" alt="Screenshot 2024-12-22 at 11 47 21 PM" src="https://github.com/user-attachments/assets/2a95e12d-c076-44ad-be96-11c0bcfea993" />
 </p>
 <hr/>
+
 - **User Dashboard Page**
 <p align = "center">
 <img width="1512" alt="Screenshot 2024-12-22 at 11 47 44 PM" src="https://github.com/user-attachments/assets/7d2414bf-2d14-4dd7-9e03-321b126582ae" />
 </p>
+<hr/>
+
 - **Change Password Page**
 <p align = "center">
    <img width="1512" alt="Screenshot 2024-12-22 at 11 48 01 PM" src="https://github.com/user-attachments/assets/7c695b6a-07f8-474c-9ce4-d04f56e4d1e5" />
