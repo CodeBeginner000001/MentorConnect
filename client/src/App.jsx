@@ -1,4 +1,4 @@
-import { HashRouterRouter as Router,Routes, Route } from "react-router-dom"
+import { HashRouter as Router,Routes, Route } from "react-router-dom"
 import {NavBar,Footer} from "./Components"
 import {Registration,Login, EditProfile, ChangePassword,Home,About, Contact, Network,DeleteProfile} from "./pages"
 import { useState ,useEffect} from "react"
