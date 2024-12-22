@@ -80,6 +80,8 @@ const handleSubmit = async (e) => {
   // Create a FormData object to hold the form data
   const formData = new FormData();
   if(password !== confirmpassword){
+    console.log(password);
+    console.log(confirmpassword);
     return toast.error("Your password does not match with the confirmed password");
   }
   // Append the values from the form fields
@@ -222,7 +224,7 @@ const handleSubmit = async (e) => {
         {/* for password */}
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password :</label>
-          <input type="password" className="form-control" id="password" required name= "password" placeholder="Enter your Password"/>
+          <input type="password" className="form-control" id="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} required name= "password" placeholder="Enter your Password"/>
         </div>
 
         {/* for confirm password */}
