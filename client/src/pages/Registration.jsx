@@ -107,7 +107,7 @@ const Registration = ({ setToken }) => {
 
     try {
       const response = await axios.post( // Send the form data to the server
-        "https://mentorship-platform-server-2522.onrender.com/api/user/register",
+        "https://mentorconnect-server.onrender.com/api/user/register",
         formData,
         {
           headers: {
