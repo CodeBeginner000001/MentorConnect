@@ -28,7 +28,7 @@ function App() {
       // fetching data from server
       try {
         const response = await axios.get(
-          "https://mentorship-platform-server-2522.onrender.com/api/user/getAuthUser",
+          "https://mentorconnect-server.onrender.com/api/user/getAuthUser",
           { headers: { token: token } }
         );
         if (response.data.success) {
@@ -50,7 +50,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://mentorship-platform-server-2522.onrender.com/api/user/getUsers"
+          "https://mentorconnect-server.onrender.com/api/user/getUsers"
         );
         if (response.data.success) {
           // if the response is success
