@@ -71,7 +71,7 @@ const NavBar = ({token,setToken,profileImage}) => {
               height="32"
               className="d-inline-block align-text-top me-4"
             />
-            Bootstrap
+            MentorConnect
           </a>
           <div className="d-flex">
           <div className={isMobile ? "d-flex" : "d-none"}>

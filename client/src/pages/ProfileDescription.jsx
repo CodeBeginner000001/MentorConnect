@@ -43,10 +43,9 @@ const [userData,setUserData] = useState({});
               <div className="d-flex gap-3">
                 {userData.skills && userData.skills.length > 0 && userData.skills.map((skill)=>{
                   return (
-                          <div key={skill}>
-                          <span className="px-2 rounded-circle bg-warning me-1"></span>
-                          <span>{skill}</span>
-                          </div> 
+                          <li key={skill} className="me-2" style={{color:"#ffc107"}}>
+                            <span style={{marginLeft:"-8px",color:"black"}}>{skill}</span>
+                          </li> 
                   )
                 })}
                   {/* <div>
@@ -64,10 +63,9 @@ const [userData,setUserData] = useState({});
               <div className="d-flex gap-3">
               {userData.interests && userData.interests.length > 0 && userData.interests.map((interest)=>{
                 return (
-                          <div key={interest}>
-                          <span className="px-2 rounded-circle bg-warning me-1" style={{height:"4px",width:"4px"}}></span>
-                          <span>{interest}</span>
-                          </div> 
+                  <li key={interest} className="me-2" style={{color:"#ffc107"}}>
+                  <span style={{marginLeft:"-8px",color:"black"}}>{interest}</span>
+                </li> 
                 )
                 })}
                   {/* <div>
