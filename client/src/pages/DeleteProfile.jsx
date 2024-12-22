@@ -6,7 +6,7 @@ const DeleteProfile = ({ token, setUserData, setToken }) => {
   const handleDelete = async () => { //handle delete function
     try {
       const response = await axios.delete( // send delete request to the server
-        "https://mentorship-platform-server-2522.onrender.com/api/user/deleteUser",
+        "https://mentorconnect-server.onrender.com/api/user/deleteUser",
         { headers: { token: token } }
       );
       if (response.data.success) {
