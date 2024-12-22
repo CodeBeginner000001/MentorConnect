@@ -29,7 +29,7 @@ const ChangePassword = () => {
       }
       const token = location.state?.token; // Check if token is available
       const response = await axios.put( // for updating the newpassword in the server
-        "https://mentorship-platform-server-2522.onrender.com/api/user/updatePassword",
+        "https://mentorconnect-server.onrender.com/api/user/updatePassword",
         { newPassword: newPassword },
         { headers: { token: token } }
       );
