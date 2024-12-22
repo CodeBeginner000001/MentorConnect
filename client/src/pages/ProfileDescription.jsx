@@ -9,7 +9,7 @@ const [userData,setUserData] = useState({});
     const fetchData = async () =>{
               try{
                 console.log(userId);
-                      const response = await axios.get(`https://mentorship-platform-9tzl.onrender.com/api/user/getUser/${userId}`);
+                      const response = await axios.get(`https://mentorship-platform-server-2522.onrender.com/api/user/getUser/${userId}`);
                       if(response.data.success){
                         setUserData(response.data.result[0]);
                         console.log(response.data.result[0]);

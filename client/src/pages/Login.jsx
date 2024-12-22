@@ -16,7 +16,7 @@ const Login = ({setToken}) => {
         console.log(`${key}`, value);
       }
   
-      const response = await axios.post("https://mentorship-platform-9tzl.onrender.com/api/user/login", formData, {
+      const response = await axios.post("https://mentorship-platform-server-2522.onrender.com/api/user/login", formData, {
         headers: {
           "Content-Type": 'application/json'
         }

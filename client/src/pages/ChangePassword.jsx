@@ -27,7 +27,7 @@ if(currentPassword == '' || newPassword == '' || confirmpassword == ''){
           return toast.error("No token found, please log in again.");
         }
         console.log(token);
-         const response = await axios.put("https://mentorship-platform-9tzl.onrender.com/api/user/updatePassword",{"newPassword":newPassword},{headers:{"token":token}});
+         const response = await axios.put("https://mentorship-platform-server-2522.onrender.com/api/user/updatePassword",{"newPassword":newPassword},{headers:{"token":token}});
          if(response.data.success){
                 toast.success("Password Updated");
                 navigate('/');

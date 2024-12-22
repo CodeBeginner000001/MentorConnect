@@ -12,7 +12,7 @@ const EditProfile = ({token}) => {
     useEffect(()=>{
       const fetchData = async () =>{
      try{
-              const response = await axios.get("https://mentorship-platform-9tzl.onrender.com/api/user/getAuthUser",{headers:{"token":token}})
+              const response = await axios.get("https://mentorship-platform-server-2522.onrender.com/api/user/getAuthUser",{headers:{"token":token}})
               // console.log(response.data.result[0]);
               if(response.data.success){
                 setUserData(response.data.result[0]);
@@ -115,7 +115,7 @@ const EditProfile = ({token}) => {
         for (const [key, value] of formData.entries()) {
           console.log(key, value); // This will log each key-value pair in the FormData
       }
-        const response = await axios.put("https://mentorship-platform-9tzl.onrender.com/api/user/updateUser", formData, {
+        const response = await axios.put("https://mentorship-platform-server-2522.onrender.com/api/user/updateUser", formData, {
             headers: {
                 "Content-Type": 'multipart/form-data',
                 "token": token

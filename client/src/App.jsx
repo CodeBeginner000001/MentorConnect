@@ -16,7 +16,7 @@ let [networkdata, setNetworkdata] = useState([]);
 useEffect(()=>{
  const fetchData = async () =>{
    try{
-     const response = await axios.get('https://mentorship-platform-9tzl.onrender.com/api/user/getUsers');
+     const response = await axios.get('https://mentorship-platform-server-2522.onrender.com/api/user/getUsers');
      if(response.data.success){
         setNetworkdata(response.data.results);
        console.log(response.data.results);
@@ -33,7 +33,7 @@ useEffect(()=>{
 useEffect(()=>{
   const fetchData = async () =>{
  try{
-          const response = await axios.get("https://mentorship-platform-9tzl.onrender.com/api/user/getAuthUser",{headers:{"token":token}})
+          const response = await axios.get("https://mentorship-platform-server-2522.onrender.com/api/user/getAuthUser",{headers:{"token":token}})
           // console.log(response.data.result[0]);
           if(response.data.success){
         // console.log(response.data);
