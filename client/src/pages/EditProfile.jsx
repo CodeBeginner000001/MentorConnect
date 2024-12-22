@@ -40,7 +40,7 @@ const EditProfile = ({ token }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://mentorship-platform-server-2522.onrender.com/api/user/getAuthUser",
+          "https://mentorconnect-server.onrender.com/api/user/getAuthUser",
           { headers: { token: token } }
         );
         if (response.data.success) {
@@ -124,7 +124,7 @@ const EditProfile = ({ token }) => {
       //   console.log(key, value); // This will log each key-value pair in the FormData
       // }
       const response = await axios.put( // used to send a put request to the server
-        "https://mentorship-platform-server-2522.onrender.com/api/user/updateUser",
+        "https://mentorconnect-server.onrender.com/api/user/updateUser",
         formData,
         {
           headers: {
