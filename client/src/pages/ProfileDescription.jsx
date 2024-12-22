@@ -11,7 +11,7 @@ const ProfileDescription = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://mentorship-platform-server-2522.onrender.com/api/user/getUser/${userId}`
+          `https://mentorconnect-server.onrender.com/api/user/getUser/${userId}`
         );
         if (response.data.success) {
           setUserData(response.data.result[0]);
