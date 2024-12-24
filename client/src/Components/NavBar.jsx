@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import logo from "/src/assets/logo.png";
-import defaults from "/src/assets/default image.jpg";
+import defaultImage from "/src/assets/default image.jpg";
 import { useNavigate,Link } from "react-router-dom";
 import { toast } from "react-toastify";
 const NavBar = ({token,setToken,profileImage}) => {
@@ -68,7 +68,7 @@ const NavBar = ({token,setToken,profileImage}) => {
             <div className={isMobile ? "d-flex" : "d-none"}>
               {/* profile image */}
               <img
-                src={profileImage ? profileImage :defaults}
+                src={profileImage ? profileImage :defaultImage}
                 alt=""
                 className={`border border-dark-subtle rounded-circle align-self-center object-fit-cover ${
                   token ? "d-flex me-4" : "d-none"

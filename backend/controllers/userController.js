@@ -19,7 +19,7 @@ const userRegister = async (req,res) => {
              if(!validator.isEmail(email)){
                 return res.json({success:false,msg:"Please enter a valid email"});
                }
-               if(password.length < 8){
+               if(password.length < 5){
                 return res.json({success:false,msg:"Please enter a strong password"});
                }
                await connection.query('USE user');
@@ -145,7 +145,7 @@ const updatePassword = async (req,res)=>{
              if(password[0][0].password === newPassword){
                 throw new Error("Please enter a new password");
              }
-             if(newPassword.length < 8){
+             if(newPassword.length < 5){
                 return res.json({success:false,msg:"Please enter a strong password"});
              }
              const salt = await bcrypt.genSalt(10);

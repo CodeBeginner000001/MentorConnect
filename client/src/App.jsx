@@ -76,7 +76,7 @@ function App() {
           <Route path="/user/:userId" element={<ProfileDescription />} />
           <Route path="/signup" element={<Registration setToken={setToken} />}/>
           <Route path="/login" element={<Login setToken={setToken} />} />
-          <Route path="/edit" element={<EditProfile token={token} />} />
+          <Route path="/edit" element={<EditProfile token={token} userData={userData} networkdata={networkdata} setUserData={setUserData} setNetworkdata={setNetworkdata} />} />
           <Route path="/changepass" element={<ChangePassword />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-const EditProfile = ({ token }) => {
+import defaultImage from "/src/assets/default image.jpg";
+const EditProfile = ({ token ,userData,setUserData,networkdata,setNetworkdata}) => {
   const navigate = useNavigate();
   let [uploadprofileImage, setUploadprofileImage] = useState(); // using useState for user to upload new image
   const uploadElement = useRef(); // using useRef to get the file input element
   const [value, setValue] = useState(""); // using useState for bio
   const [height, setHeight] = useState("auto"); // using useState to adjust the bio input field height
-  const [userData, setUserData] = useState({}); // get the logged in user data
+  // const [userData, setUserData] = useState({}); // get the logged in user data
 
   const [skills, setSkills] = useState([]); // using useState to store the user's skills
   const [skillOptions, setSkillOptions] = useState([ // using useState to store the available skills
@@ -36,24 +37,24 @@ const EditProfile = ({ token }) => {
   ]);
 
   const [roleOptions, setRoleOptions] = useState(["Mentor", "Mentee"]); // using useState to store the available roles
-  useEffect(() => { // to get the logged in user data
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://mentorconnect-server.onrender.com/api/user/getAuthUser",
-          { headers: { token: token } }
-        );
-        if (response.data.success) {
-          setUserData(response.data.result[0]);
-        } else {
-          throw new Error(response.data.msg);
-        }
-      } catch (e) {
-        throw new Error(e.message);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => { // to get the logged in user data
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://mentorconnect-server.onrender.com/api/user/getAuthUser",
+  //         { headers: { token: token } }
+  //       );
+  //       if (response.data.success) {
+  //         setUserData(response.data.result[0]);
+  //       } else {
+  //         throw new Error(response.data.msg);
+  //       }
+  //     } catch (e) {
+  //       throw new Error(e.message);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   useEffect(() => { // to update the Skills and interest after fetching skills and interest from the server
     setSkills(userData.skills || []);
@@ -135,6 +136,7 @@ const EditProfile = ({ token }) => {
       );
       if (response.data.success) {
         setUserData(response.data.updatedUser);
+        setNetworkdata([...networkdata,response.data.updatedUser]);
         toast.success("User Updated Successfully");
         navigate("/");
       }
@@ -153,10 +155,10 @@ const EditProfile = ({ token }) => {
             src={
               uploadprofileImage
                 ? URL.createObjectURL(uploadprofileImage)
-                : userData.image
+                : (userData.image?userData.image:defaultImage)
             }
             alt=""
-            className="border border-dark-subtle rounded-circle mb-4 align-self-center object-fit-cover"
+            className="border border-dark-subtle rounded-circle mb-4 align-self-center object-fit-cover cursor-pointer"
             width="180px"
             height="180px"
             onClick={handleupload}
