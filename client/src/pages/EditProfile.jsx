@@ -37,24 +37,6 @@ const EditProfile = ({ token ,userData,setUserData,networkdata,setNetworkdata}) 
   ]);
 
   const [roleOptions, setRoleOptions] = useState(["Mentor", "Mentee"]); // using useState to store the available roles
-  // useEffect(() => { // to get the logged in user data
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "https://mentorconnect-server.onrender.com/api/user/getAuthUser",
-  //         { headers: { token: token } }
-  //       );
-  //       if (response.data.success) {
-  //         setUserData(response.data.result[0]);
-  //       } else {
-  //         throw new Error(response.data.msg);
-  //       }
-  //     } catch (e) {
-  //       throw new Error(e.message);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
 
   useEffect(() => { // to update the Skills and interest after fetching skills and interest from the server
     setSkills(userData.skills || []);
