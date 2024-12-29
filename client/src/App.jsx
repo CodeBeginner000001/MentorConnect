@@ -42,7 +42,7 @@ function App() {
     };
     //  if token is empty then it will fetch data from server
     if (token != "") {
-      fetchData();
+      fetchData(); 
     }
   }, [token]);
 
