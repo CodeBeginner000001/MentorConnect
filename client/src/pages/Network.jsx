@@ -1,12 +1,48 @@
 import { ProfileCard } from "../Components";
+<<<<<<< HEAD
+import { useState } from "react";
+import profilePic from "/src/assets/Two People Greeting.jpg";
+const Network = () => {
+=======
 import { useEffect, useState } from "react";
 import axios from "axios";
 const Network = ({token,networkdata}) => {
+>>>>>>> 2d644cd (files)
   let i=0;
   let [filterskill,setFilterskill]= useState([])
   let [filterinterest,setFilterinterest]= useState([])
   let [filterRole,setfilterRole] = useState([])
+<<<<<<< HEAD
+  let [networkdata, setNetworkdata] = useState([
+    {
+      name: "Adarsh Goyal",
+      profilePic: profilePic,
+      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+      role: "mentor",
+    },
+    {
+      name: "Adarsh Goyal",
+      profilePic: profilePic,
+      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+      role: "mentor",
+    },
+    {
+      name: "Adarsh Goyal",
+      profilePic: profilePic,
+      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+      role: "mentor",
+    },
+    {
+      name: "Adarsh Goyal",
+      profilePic: profilePic,
+      bio: "vcoeuwvcewcvewuvwveruyvewrcewuyvcuoevwicvewcvweicyewvcuywevuycvowevceuwcyewceribwlweewbewiewreiblewriubewir",
+      role: "mentor",
+    },
+  ]);
+
+=======
  
+>>>>>>> 2d644cd (files)
   const handleSkill = (e)=>{
     let skill=e.target.value;
     if(filterskill.includes(skill))
@@ -40,6 +76,10 @@ const Network = ({token,networkdata}) => {
     }
     console.log(filterinterest)
   }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2d644cd (files)
   const skills = [
     'JavaScript',
     'React',
@@ -135,6 +175,15 @@ const Network = ({token,networkdata}) => {
             </div>
           </div>
           <div className="d-flex flex-wrap column-gap-4 row-gap-5 ms-3 justify-content-center">
+<<<<<<< HEAD
+            {networkdata.map((user) => (
+              <ProfileCard
+                profilePic={user.profilePic}
+                name={user.name}
+                bio={user.bio}
+                role={user.role}
+                key={i++}
+=======
             {networkdata && networkdata.length > 0 && networkdata.map((user) => (
               <ProfileCard
                 profilePic={user.image}
@@ -144,6 +193,7 @@ const Network = ({token,networkdata}) => {
                 key={user.id}
                 userId={user.id}
                 token={token}
+>>>>>>> 2d644cd (files)
               />
             ))}
           </div>

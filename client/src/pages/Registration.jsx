@@ -1,13 +1,20 @@
 import { useRef,useState } from "react";
 import Upload_Image_logo from "/src/assets/Upload Image.png"
+<<<<<<< HEAD
+const Registration = () => {
+=======
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Registration = ({setToken}) => {
+>>>>>>> 2d644cd (files)
     let [uploadprofileImage,setUploadprofileImage]=useState()
     const [value, setValue] = useState('');
     const [height, setHeight] = useState('auto');
     const uploadElement = useRef();
+<<<<<<< HEAD
+=======
     const navigate = useNavigate();
+>>>>>>> 2d644cd (files)
     const handleupload = ()=>{
         uploadElement.current.click();
     }
@@ -69,6 +76,17 @@ const Registration = ({setToken}) => {
   const handleRemoveInterest = (interest) => {
     setInterests(interests.filter((s) => s !== interest));
   };
+<<<<<<< HEAD
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    const skillsQueryString = skills.map(skill => `skills=${skill}`).join('&');
+    const interestsQueryString = interests.map(interest => `interests=${interest}`).join('&');
+    const queryString = `${skillsQueryString}&${interestsQueryString}`;
+    const url = `https://example.com/submit?${queryString}`;
+    console.log(url);
+  }
+=======
 const [email,setEmail] = useState('');
 const [password,setPassword] = useState('');
 // const []
@@ -114,6 +132,7 @@ const handleSubmit = async (e) => {
       console.log(error);
   }
 };
+>>>>>>> 2d644cd (files)
   return (
     <div className="container mt-4 mb-4">
       <h1 className="mb-2">Create Your Profile</h1>
@@ -126,7 +145,11 @@ const handleSubmit = async (e) => {
         {/* for Username*/}
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Username :</label>
+<<<<<<< HEAD
+          <input type="text" className="form-control" id="username" name="username" placeholder="Enter your username"/>
+=======
           <input type="text" className="form-control" id="username" name="name" placeholder="Enter your username"/>
+>>>>>>> 2d644cd (files)
         </div>
 
         {/* for email id */}
@@ -138,14 +161,22 @@ const handleSubmit = async (e) => {
         {/* Bio */}
         <div className="mb-3">
           <label htmlFor="divbio" className="form-label">Bio :</label>
+<<<<<<< HEAD
+          <textarea className="form-control" id="bio" placeholder="Write a Bio" onChange={handleOnChange} style={{height}} value={value}/>
+=======
           <textarea className="form-control" id="bio" name="bio" placeholder="Write a Bio" onChange={handleOnChange} style={{height}} />
+>>>>>>> 2d644cd (files)
           {/* <textarea  style="overflow:hidden"></textarea> */}
         </div>
 
         {/* Upload image */}
         <div className="mb-3">
           <label htmlFor="profileImage" className="form-label">Upload your image :</label>
+<<<<<<< HEAD
+          <input className="form-control form-control-sm" id="profileImage" name="profileImage" type="file" accept="image/png,image/jpeg,image/jpg" onChange={handleImageChange} ref={uploadElement}/>
+=======
           <input className="form-control form-control-sm" id="profileImage" name="image" type="file" accept="image/png,image/jpeg,image/jpg" onChange={handleImageChange} ref={uploadElement}/>
+>>>>>>> 2d644cd (files)
         </div>
 
         {/* For Skills */}
