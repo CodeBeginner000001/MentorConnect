@@ -1,11 +1,4 @@
 import {Link} from "react-router-dom"
-<<<<<<< HEAD
-const Login = () => {
-  return (
-    <div className="container mt-4">
-      <h1 className="mb-3">Login Your Account</h1>
-      <form>
-=======
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 const Login = ({setToken}) => {
@@ -43,26 +36,17 @@ const Login = ({setToken}) => {
     <div className="container mt-4">
       <h1 className="mb-3">Login Your Account</h1>
       <form onSubmit={handlesubmit}>
->>>>>>> 2d644cd (files)
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email Address
           </label>
-<<<<<<< HEAD
-          <input type="email" className="form-control" id="email" />
-=======
           <input type="email" className="form-control" id="email" name ="email"/>
->>>>>>> 2d644cd (files)
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
             Password
           </label>
-<<<<<<< HEAD
-          <input type="password" className="form-control" id="password" />
-=======
           <input type="password" className="form-control" id="password" name="password"/>
->>>>>>> 2d644cd (files)
         </div>
         <div className="mb-3">
           <p> Create an Account ? <Link to="/signup">Sign up</Link></p>
@@ -75,8 +59,4 @@ const Login = ({setToken}) => {
   );
 };
 
-<<<<<<< HEAD
 export default Login;
-=======
-export default Login;
->>>>>>> 2d644cd (files)

@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import { HashRouter as Router,Routes, Route } from "react-router-dom"
-import {NavBar,Footer} from "./Components"
-import {Registration,Login, EditProfile, ChangePassword,Home,About, Contact, Network} from "./pages"
-function App() {
-  return (
-    <>
-    <Router>
-      <NavBar/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/signup" element={<Registration/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/edit" element={<EditProfile/>}/>
-        <Route path="/changepass" element={<ChangePassword/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/network" element={<Network/>}/>
-=======
 import { BrowserRouter as Router,Routes, Route } from "react-router-dom"
 import {NavBar,Footer} from "./Components"
 import {Registration,Login, EditProfile, ChangePassword,Home,About, Contact, Network} from "./pages"
@@ -81,7 +62,6 @@ useEffect(()=>{
         <Route path="/about" element={<About/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/network" element={<Network token={token} networkdata={networkdata}/>}/>     
->>>>>>> 2d644cd (files)
         <Route/>
       </Routes>
       <Footer/>

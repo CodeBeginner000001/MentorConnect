@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { useRef,useState } from "react";
-import Upload_Image_logo from "/src/assets/Upload Image.png"
-const EditProfile = () => {
-    let [uploadprofileImage,setUploadprofileImage]=useState()
-    const [value, setValue] = useState('');
-    const [height, setHeight] = useState('auto');
-    const uploadElement = useRef();
-=======
 import { useEffect, useRef,useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +24,6 @@ const EditProfile = ({token}) => {
       setSkills(userData.skills || []);
       setInterests(userData.interests || []);
     },[userData])
->>>>>>> 2d644cd (files)
     const handleupload = ()=>{
         uploadElement.current.click();
     }
@@ -45,10 +35,7 @@ const EditProfile = ({token}) => {
         setValue(e.target.value);
         const newHeight = 1 + e.target.scrollHeight;
         setHeight(`${newHeight}px`);
-<<<<<<< HEAD
-=======
        setUserData((prev) => ({ ...prev, bio: e.target.value }))
->>>>>>> 2d644cd (files)
       };
 
   const [skills, setSkills] = useState([]);
@@ -99,17 +86,6 @@ const EditProfile = ({token}) => {
   const handleRemoveInterest = (interest) => {
     setInterests(interests.filter((s) => s !== interest));
   };
-<<<<<<< HEAD
-
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-    const skillsQueryString = skills.map(skill => `skills=${skill}`).join('&');
-    const interestsQueryString = interests.map(interest => `interests=${interest}`).join('&');
-    const queryString = `${skillsQueryString}&${interestsQueryString}`;
-    const url = `http://localhost:5173/signup/submit?${queryString}`;
-    console.log(url);
-  }
-=======
  
   const handleSubmit = async (e) => {
     try {
@@ -149,7 +125,6 @@ const EditProfile = ({token}) => {
         console.log(e.message);
     }
 }
->>>>>>> 2d644cd (files)
 
   return (
     <div className="container mt-4 mb-4">
@@ -157,41 +132,25 @@ const EditProfile = ({token}) => {
       <form onSubmit={handleSubmit}>
         {/* Uploaded File */}
         <div className="d-flex flex-column">
-<<<<<<< HEAD
-          <img src={uploadprofileImage? URL.createObjectURL(uploadprofileImage):Upload_Image_logo} alt="" className="border border-dark-subtle rounded-circle mb-4 align-self-center object-fit-cover" width="180px" height="180px" onClick={handleupload}/>
-=======
           <img src={uploadprofileImage? URL.createObjectURL(uploadprofileImage):userData.image} alt="" className="border border-dark-subtle rounded-circle mb-4 align-self-center object-fit-cover" width="180px" height="180px" onClick={handleupload}/>
->>>>>>> 2d644cd (files)
        </div>
 
         {/* for Username*/}
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Username :</label>
-<<<<<<< HEAD
-          <input type="text" className="form-control" id="username" name="username" placeholder="Enter your username"/>
-=======
           <input type="text" className="form-control" id="username" name="username" value={userData.name}  onChange={(e) => setUserData((prev) => ({ ...prev, name: e.target.value }))} placeholder="Enter your username"/>
->>>>>>> 2d644cd (files)
         </div>
 
         {/* for email id */}
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email Address :</label>
-<<<<<<< HEAD
-          <input type="email" className="form-control" id="email" name="email" placeholder="Enter your Email Address" disabled/>
-=======
           <input type="email" className="form-control" id="email" name="email" value={userData.email} placeholder="Enter your Email Address" disabled/>
->>>>>>> 2d644cd (files)
         </div>
 
         {/* Bio */}
         <div className="mb-3">
           <label htmlFor="divbio" className="form-label">Bio :</label>
-<<<<<<< HEAD
-          <textarea className="form-control" id="bio" placeholder="Write a Bio" onChange={handleOnChange} style={{height}} value={value}/>
-=======
           <textarea className="form-control" id="bio" placeholder="Write a Bio" onChange={handleOnChange} value={userData.bio} style={{height}}/>
->>>>>>> 2d644cd (files)
           {/* <textarea  style="overflow:hidden"></textarea> */}
         </div>
 
@@ -268,17 +227,6 @@ const EditProfile = ({token}) => {
         </div>
 
         {/* Role */}
-<<<<<<< HEAD
-        <div className="mb-3">
-            <label htmlFor="role" className="form-label">Role:</label>
-            <select name="role" id="role" className="form-select">
-              <option value="">Select your role</option>
-              {roleOptions.map((role)=>(
-                <option key={role} value={role}>{role}</option>
-              ))}
-            </select>
-        </div>
-=======
 <div className="mb-3">
     <label htmlFor="role" className="form-label">Role:</label>
     <select name="role" id="role" className="form-select">
@@ -290,7 +238,6 @@ const EditProfile = ({token}) => {
             ))}
     </select>
 </div>
->>>>>>> 2d644cd (files)
 
         {/* submit button */}
         <button type="submit" className="btn btn-warning">
