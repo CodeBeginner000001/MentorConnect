@@ -13,7 +13,11 @@
     cursor: pointer;
 }
 .background{
+<<<<<<< HEAD
+    background-image: url('/src/assets/Two People Greeting.jpg');
+=======
     background-image: url('/src/assets/Two.png');
+>>>>>>> 2d644cd (files)
     background-size: cover;
     height: 100vh;
     width: 100vw;
