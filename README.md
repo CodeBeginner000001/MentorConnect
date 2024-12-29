@@ -10,7 +10,7 @@ MentorConnect is a global platform designed to bridge the gap between mentors an
 2. [File Structure](#file-structure)
 3. [Getting Started](#getting-started)
 4. [Backend](#backend)
-   - [Routes](#routes)
+   - [Routes](#routes) 
    - [Middleware](#middleware)
    - [Database and Hosting](#database-and-hosting)
    - [Cloudinary and Google Cloud SQL](#cloudinary-and-google-cloud-sql)
