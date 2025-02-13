@@ -210,4 +210,5 @@ The client-side application, built using React.js, offers an intuitive user inte
 For any inquiries, feedback, or support, feel free to reach out to us:
 
 - **Email**: snehagupta7385@gmail.com
+- **Email**: ashu2100ag@gmail.com
 
