@@ -207,6 +207,127 @@ let userData = [
     "skills": ["C++", "Python", "Node.js"],
     "interests": ["Mountain Climbing", "Bike Riding", "Travel"],
     "role": "Mentor"
+  },
+  {
+    "id": 20,
+    "name": "Grace Thompson",
+    "bio": "Grace Thompson is a mentee passionate about data science and machine learning. She is learning Python and R to build predictive models and analyze large datasets.",
+    "image": "https://img.freepik.com/free-photo/portrait-young-woman-with-natural-make-up_23-2149084942.jpg?w=740",
+    "email": "gracethompson20@example.com",
+    "password": "hashedpassword20",
+    "skills": ["Python", "R"],
+    "interests": ["Reading", "Photography", "Travel"],
+    "role": "Mentee"
+  },
+  {
+    "id": 21,
+    "name": "Noah Jackson",
+    "bio": "Noah Jackson is a mentor with deep expertise in cloud infrastructure and DevOps. He guides mentees through AWS, Docker, and CI/CD pipelines to build scalable production systems.",
+    "image": "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?w=740",
+    "email": "noahjackson21@example.com",
+    "password": "hashedpassword21",
+    "skills": ["AWS", "Docker", "Node.js"],
+    "interests": ["Hiking", "Chess", "Reading"],
+    "role": "Mentor"
+  },
+  {
+    "id": 22,
+    "name": "Zoe Martinez",
+    "bio": "Zoe Martinez is a mentee eager to learn mobile development. She is currently focused on React Native and Flutter to build cross-platform applications.",
+    "image": "https://img.freepik.com/free-photo/brunette-girl-posing_23-2148108748.jpg?w=740",
+    "email": "zoemartinez22@example.com",
+    "password": "hashedpassword22",
+    "skills": ["React Native", "Flutter"],
+    "interests": ["Swimming", "Cooking", "Travel"],
+    "role": "Mentee"
+  },
+  {
+    "id": 23,
+    "name": "Aiden Robinson",
+    "bio": "Aiden Robinson is a mentor specializing in cybersecurity and ethical hacking. He helps mentees understand secure coding practices, penetration testing, and network security fundamentals.",
+    "image": "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=740",
+    "email": "aidenrobinson23@example.com",
+    "password": "hashedpassword23",
+    "skills": ["Python", "Linux", "JavaScript"],
+    "interests": ["Chess", "Bike Riding", "Mountain Climbing"],
+    "role": "Mentor"
+  },
+  {
+    "id": 24,
+    "name": "Lily Walker",
+    "bio": "Lily Walker is a mentee diving into UI/UX design and front-end development. She is learning Figma and React to create beautiful, accessible user experiences.",
+    "image": "https://img.freepik.com/free-photo/pretty-girl-looking-camera_23-2147896645.jpg?w=740",
+    "email": "lilywalker24@example.com",
+    "password": "hashedpassword24",
+    "skills": ["React", "JavaScript"],
+    "interests": ["Photography", "Lawn Tennis", "Reading"],
+    "role": "Mentee"
+  },
+  {
+    "id": 25,
+    "name": "Samuel Lewis",
+    "bio": "Samuel Lewis is a mentor with a strong background in data engineering and big data technologies. He mentors aspiring data engineers on Spark, Kafka, and distributed systems.",
+    "image": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?w=740",
+    "email": "samuellewis25@example.com",
+    "password": "hashedpassword25",
+    "skills": ["Python", "Java", "Node.js"],
+    "interests": ["Cricket", "Travel", "Communication"],
+    "role": "Mentor"
+  },
+  {
+    "id": 26,
+    "name": "Harper Nelson",
+    "bio": "Harper Nelson is a mentee exploring backend development. She is passionate about building RESTful APIs with Node.js and learning database design with PostgreSQL.",
+    "image": "https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-relaxed-thinking-smile-positivity_1258-175669.jpg?w=740",
+    "email": "harpernelson26@example.com",
+    "password": "hashedpassword26",
+    "skills": ["Node.js", "JavaScript"],
+    "interests": ["Swimming", "Cooking", "Reading"],
+    "role": "Mentee"
+  },
+  {
+    "id": 27,
+    "name": "Elijah Carter",
+    "bio": "Elijah Carter is a mentor with extensive experience in machine learning and AI. He guides mentees through neural networks, model training, and deployment using Python and TensorFlow.",
+    "image": "https://img.freepik.com/free-photo/handsome-man-smiling-happy-face-portrait_53876-14812.jpg?w=740",
+    "email": "elijahcarter27@example.com",
+    "password": "hashedpassword27",
+    "skills": ["Python", "Java", "C++"],
+    "interests": ["Chess", "Mountain Climbing", "Reading"],
+    "role": "Mentor"
+  },
+  {
+    "id": 28,
+    "name": "Scarlett Mitchell",
+    "bio": "Scarlett Mitchell is a mentee interested in game development. She is learning C++ and Unity to build her first indie game while sharpening her programming fundamentals.",
+    "image": "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-isolated-portrait_158538-11724.jpg?w=740",
+    "email": "scarlettmitchell28@example.com",
+    "password": "hashedpassword28",
+    "skills": ["C++", "JavaScript"],
+    "interests": ["Gaming", "Travel", "Cricket"],
+    "role": "Mentee"
+  },
+  {
+    "id": 29,
+    "name": "Daniel Perez",
+    "bio": "Daniel Perez is a mentor passionate about open-source development and software architecture. He helps mentees understand design patterns, clean code, and contributing to OSS projects.",
+    "image": "https://img.freepik.com/free-photo/portrait-young-man-with-rebel-style_23-2148072095.jpg?w=740",
+    "email": "danielperez29@example.com",
+    "password": "hashedpassword29",
+    "skills": ["React", "Node.js", "Python"],
+    "interests": ["Reading", "Bike Riding", "Communication"],
+    "role": "Mentor"
+  },
+  {
+    "id": 30,
+    "name": "Victoria Evans",
+    "bio": "Victoria Evans is a mentee focused on becoming a full-stack developer. She is currently mastering Vue.js on the frontend and Node.js on the backend to build complete web applications.",
+    "image": "https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?w=740",
+    "email": "victoriaevans30@example.com",
+    "password": "hashedpassword30",
+    "skills": ["Vue.js", "Node.js"],
+    "interests": ["Travel", "Lawn Tennis", "Photography"],
+    "role": "Mentee"
   }
 ]
 module.exports = userData;

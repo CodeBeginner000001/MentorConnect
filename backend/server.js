@@ -13,7 +13,6 @@ const createToken = (id)=>{
 }
 const userData = require("./schema/userData.js");
 connectToCloudinary();
-const mysql = require('mysql2/promise');// For promise-based MySQL operations
 app.use(express.json()); 
 app.use(cors());
 app.listen(port,()=>{
@@ -25,8 +24,8 @@ app.use("/api/user",userRouter);
 //for creating a table
 app.get('/create-table', async (req, res) => {
     const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS User (
-        id INT AUTO_INCREMENT PRIMARY KEY,
+      CREATE TABLE IF NOT EXISTS "User" (
+        id SERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         bio VARCHAR(1000) NOT NULL,
         image VARCHAR(600),
@@ -39,10 +38,10 @@ app.get('/create-table', async (req, res) => {
     `;
   
     try {
-      // Use await with the promise-based connection
-      const [results] = await connection.execute(createTableQuery);
+      await connection.query(createTableQuery);
       res.send('Users table created successfully!');
     } catch (err) {
+      console.error(err);
       res.status(500).send('Failed to create table');
     }
   });
@@ -50,8 +49,8 @@ app.get('/create-table', async (req, res) => {
  app.post('/add-users', async (req, res) => {
     // Query for inserting multiple rows
     const insertQuery = `
-      INSERT INTO User (name, bio, image, email, password, skills, interests, role)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO "User" (name, bio, image, email, password, skills, interests, role)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     `;
     try {
   //     // Loop through userData and execute the insert query for each user
@@ -74,13 +73,13 @@ app.get('/create-table', async (req, res) => {
                  const salt = await bcrypt.genSalt(10);
                  const hashedPassword = await bcrypt.hash(password,salt);
         // Insert each user into the database
-        await connection.execute(insertQuery, [
+        await connection.query(insertQuery, [
           name,
           bio,
           imageUrl,
           email,
           hashedPassword,
-          JSON.stringify(skills), // Serialize JSON fields
+          JSON.stringify(skills),
           JSON.stringify(interests),
           role,
         ]);

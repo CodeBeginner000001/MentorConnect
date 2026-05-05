@@ -1,0 +1,66 @@
+DATABASE SETUP & API OPERATIONS
+================================
+
+Prerequisites
+-------------
+- Backend server must be running: node server.js (runs on port 3000)
+- PostgreSQL (Neon) connection string must be set in .env as POSTGRESQL_NEON
+
+
+1. CREATE THE USER TABLE
+------------------------
+GET http://localhost:3000/create-table
+
+Creates the "User" table in the database if it does not already exist.
+Run this once before adding any users.
+
+
+2. SEED USERS FROM userData.js
+-------------------------------
+POST http://localhost:3000/add-users
+
+Reads all users from schema/userData.js, uploads their images to Cloudinary,
+hashes their passwords, and inserts them into the "User" table.
+
+NOTE: Running this multiple times will fail on duplicate emails.
+      Clear the table first if you need to re-seed (see below).
+
+
+3. USER AUTH & PROFILE APIS (prefix: /api/user)
+------------------------------------------------
+POST   /api/user/register       - Register a new user
+POST   /api/user/login          - Login and receive a JWT token
+GET    /api/user/profile        - Get logged-in user's profile (requires JWT)
+PUT    /api/user/edit-profile   - Update profile details (requires JWT)
+PUT    /api/user/change-password- Change password (requires JWT)
+DELETE /api/user/delete         - Delete account (requires JWT)
+
+Send JWT token in the Authorization header:
+  Authorization: Bearer <token>
+
+
+4. USEFUL DATABASE QUERIES (run via psql or any pg client)
+----------------------------------------------------------
+-- View all users
+SELECT id, name, email, role FROM "User";
+
+-- Count users
+SELECT COUNT(*) FROM "User";
+
+-- Delete all users (to re-seed)
+DELETE FROM "User";
+
+-- Drop the table entirely (full reset)
+DROP TABLE "User";
+
+-- Find users by role
+SELECT name, email FROM "User" WHERE role = 'Mentor';
+SELECT name, email FROM "User" WHERE role = 'Mentee';
+
+
+5. NOTES
+--------
+- Passwords are hashed with bcrypt before storing — never stored as plain text.
+- skills and interests columns are stored as JSON arrays.
+- Images are uploaded to Cloudinary; the returned secure_url is stored in the DB.
+- The server uses PostgreSQL syntax ($1, $2 placeholders), NOT MySQL (?) syntax.
