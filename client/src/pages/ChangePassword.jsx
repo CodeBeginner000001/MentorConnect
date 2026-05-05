@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { toast } from "react-toastify";
 import axios from "axios";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const ChangePassword = () => {
   // useStates for passwords
   const [currentPassword, setCurrentPassword] = useState("");
@@ -29,7 +29,7 @@ const ChangePassword = () => {
       }
       const token = location.state?.token; // Check if token is available
       const response = await axios.put( // for updating the newpassword in the server
-        "https://mentorconnect-server.onrender.com/api/user/updatePassword",
+        "https://mentor-connect-server.vercel.app/api/user/updatePassword",
         { newPassword: newPassword },
         { headers: { token: token } }
       );

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import defaultImage from "/src/assets/default image.jpg";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import defaultImage from "/src/assets/default image.jpg";
 const ProfileDescription = () => {
   // useParams to get the id from the url
   const { userId } = useParams();
@@ -11,7 +11,7 @@ const ProfileDescription = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://mentorconnect-server.onrender.com/api/user/getUser/${userId}`
+          `https://mentor-connect-server.vercel.app/api/user/getUser/${userId}`
         );
         if (response.data.success) {
           setUserData(response.data.result[0]);

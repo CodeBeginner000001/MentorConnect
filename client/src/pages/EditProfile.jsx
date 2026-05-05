@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import defaultImage from "/src/assets/default image.jpg";
@@ -107,7 +107,7 @@ const EditProfile = ({ token ,userData,setUserData,networkdata,setNetworkdata}) 
       //   console.log(key, value); // This will log each key-value pair in the FormData
       // }
       const response = await axios.put( // used to send a put request to the server
-        "https://mentorconnect-server.onrender.com/api/user/updateUser",
+        "https://mentor-connect-server.vercel.app/api/user/updateUser",
         formData,
         {
           headers: {

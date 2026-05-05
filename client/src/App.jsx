@@ -1,20 +1,20 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { NavBar, Footer } from "./Components";
-import {
-  Registration,
-  Login,
-  EditProfile,
-  ChangePassword,
-  Home,
-  About,
-  Contact,
-  Network,
-  DeleteProfile,
-} from "./pages";
-import { useState, useEffect } from "react";
 import axios from "axios";
-import ProfileDescription from "./pages/ProfileDescription";
+import { useEffect, useState } from "react";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Footer, NavBar } from "./Components";
+import {
+  About,
+  ChangePassword,
+  Contact,
+  DeleteProfile,
+  EditProfile,
+  Home,
+  Login,
+  Network,
+  Registration,
+} from "./pages";
+import ProfileDescription from "./pages/ProfileDescription";
 function App() {
   // fetching token from server and storing it in a useState
   const [token, setToken] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : ""); 
@@ -28,7 +28,7 @@ function App() {
       // fetching data from server
       try {
         const response = await axios.get(
-          "https://mentorconnect-server.onrender.com/api/user/getAuthUser",
+          "https://mentor-connect-server.vercel.app/api/user/getAuthUser",
           { headers: { token: token } }
         );
         if (response.data.success) {
@@ -37,7 +37,7 @@ function App() {
           throw new Error(response.data.msg);
         }
       } catch (e) {
-        // console.log(e.message);
+        console.log(e.message);
       }
     };
     //  if token is empty then it will fetch data from server
@@ -50,7 +50,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://mentorconnect-server.onrender.com/api/user/getUsers"
+          "https://mentor-connect-server.vercel.app/api/user/getUsers"
         );
         if (response.data.success) {
           // if the response is success
@@ -59,7 +59,7 @@ function App() {
           throw new Error(response.data.msg); // throw error if the response is not success
         }
       } catch (e) {
-        //  console.log(e.message);
+         console.log(e.message);
       }
     };
     fetchData();

@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
-import Upload_Image_logo from "/src/assets/Upload Image.png";
 import axios from "axios";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Upload_Image_logo from "/src/assets/Upload Image.png";
 const Registration = ({ setToken }) => {
   const navigate = useNavigate();
 
@@ -107,7 +107,7 @@ const Registration = ({ setToken }) => {
 
     try {
       const response = await axios.post( // Send the form data to the server
-        "https://mentorconnect-server.onrender.com/api/user/register",
+        "https://mentor-connect-server.vercel.app/api/user/register",
         formData,
         {
           headers: {

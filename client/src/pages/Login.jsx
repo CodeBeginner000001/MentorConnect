@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 const Login = ({ setToken }) => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const Login = ({ setToken }) => {
       // }
 
       const response = await axios.post( // send a post request to the server
-        "https://mentorconnect-server.onrender.com/api/user/login",
+        "https://mentor-connect-server.vercel.app/api/user/login",
         formData,
         {
           headers: {
